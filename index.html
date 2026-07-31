@@ -1750,8 +1750,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
 
      ========================================================================== -->
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18306001834"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18306001834');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1040800072035550');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
 </head>
 <body>
+
+<!-- Meta Pixel noscript fallback (page view, no-JS) -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
+/></noscript>
 
 <!-- GOOGLE TAG MANAGER (noscript) — NOT ACTIVE YET. See the note in the head.
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
@@ -2532,6 +2563,7 @@ function trackLead(formName, detail) {
     });
   } catch (e) {}
   try { if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form_name: formName }); } } catch (e) {}
+  try { if (typeof gtag === 'function') { gtag('event', 'conversion', { 'send_to': 'AW-18306001834/zpweCKzEztkcEKrX_ZhE' }); } } catch (e) {}
   try { if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: formName }); } } catch (e) {}
 }
 
