@@ -58,6 +58,12 @@ a { color:inherit; }
   padding:22px 6vw; border-bottom:1px solid var(--stone-dk);
   display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
 }
+.masthead-brand { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; min-width:0; }
+
+/* Mobile-only contact menu and persistent call button. Hidden on desktop,
+   where both forms are already in reach. The menu holds contact channels
+   only — no page navigation, so it cannot pull a visitor off the page. */
+.mnav-toggle, .mnav-panel, .sticky-cta { display:none; }
 .masthead-name {
   font-family:'Cormorant Garamond',serif; font-size:21px;
   color:var(--ink); font-weight:500; letter-spacing:0.02em;
@@ -102,14 +108,18 @@ a { color:inherit; }
   display:block; font-size:9px; letter-spacing:0.24em; text-transform:uppercase;
   color:var(--sage-lt); font-weight:500; margin-bottom:7px;
 }
-.field input, .field select {
+.field input, .field select, .field textarea {
   width:100%; background:rgba(255,255,255,0.06);
   border:1px solid rgba(255,255,255,0.14); padding:13px 15px;
   color:var(--warm-wh); font-family:'Jost',sans-serif; font-size:15px;
   font-weight:300; outline:none; transition:border-color 0.2s, background 0.2s;
 }
-.field input::placeholder { color:rgba(255,255,255,0.28); }
-.field input:focus, .field select:focus { border-color:var(--sage); background:rgba(255,255,255,0.1); }
+.field input::placeholder, .field textarea::placeholder { color:rgba(255,255,255,0.28); }
+.field textarea { resize:vertical; min-height:74px; line-height:1.55; }
+.field .opt {
+  color:rgba(255,255,255,0.32); letter-spacing:0.16em; font-weight:400;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color:var(--sage); background:rgba(255,255,255,0.1); }
 .field select option { background:var(--charcoal); color:var(--warm-wh); }
 .btn-main {
   width:100%; border:none; background:var(--sage); color:#fff; padding:17px;
@@ -239,6 +249,68 @@ a { color:inherit; }
   .local { padding:48px 26px; }
   .local-inner { gap:30px; }
   .foot { padding:38px 26px; }
+
+  /* ── MOBILE CONTACT MENU ── */
+  .masthead {
+    position:sticky; top:0; z-index:120;
+    padding:12px 22px; gap:12px; flex-wrap:nowrap;
+    align-items:center; justify-content:space-between;
+    background:rgba(250,248,245,0.97); backdrop-filter:blur(10px);
+  }
+  .masthead-brand { flex-direction:column; align-items:flex-start; gap:3px; }
+  .masthead-name { font-size:18px; line-height:1; }
+  .masthead-sub {
+    font-size:8px; letter-spacing:0.2em; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; max-width:62vw;
+  }
+  .mnav-toggle {
+    display:flex; align-items:center; gap:9px; flex-shrink:0;
+    background:none; border:1px solid var(--stone-dk); cursor:pointer;
+    padding:9px 13px; font-family:'Jost',sans-serif; font-size:9px;
+    letter-spacing:0.22em; text-transform:uppercase; color:var(--forest);
+    font-weight:500; transition:border-color 0.2s;
+  }
+  .mnav-toggle:active { border-color:var(--sage); }
+  .mnav-bars { display:flex; flex-direction:column; gap:3px; width:15px; }
+  .mnav-bars i { display:block; height:1.5px; background:var(--forest); transition:transform 0.22s, opacity 0.22s; }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(1) { transform:translateY(4.5px) rotate(45deg); }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(2) { opacity:0; }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(3) { transform:translateY(-4.5px) rotate(-45deg); }
+  .mnav-panel {
+    display:block; position:absolute; top:100%; left:0; right:0;
+    background:var(--warm-wh); border-bottom:1px solid var(--stone-dk);
+    box-shadow:0 18px 34px rgba(42,42,42,0.12); padding:8px 22px 18px;
+    opacity:0; visibility:hidden; transform:translateY(-8px);
+    transition:opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  .mnav-panel.is-open { opacity:1; visibility:visible; transform:translateY(0); }
+  .mnav-item {
+    display:flex; align-items:baseline; gap:10px; padding:13px 0;
+    border-bottom:1px solid var(--stone-dk); text-decoration:none;
+    font-size:15px; color:var(--ink); font-weight:300;
+  }
+  .mnav-item span {
+    font-size:9px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage); font-weight:500; min-width:74px;
+  }
+  .mnav-cta {
+    display:block; width:100%; margin-top:16px; border:none; cursor:pointer;
+    background:var(--forest); color:#fff; padding:15px;
+    font-family:'Jost',sans-serif; font-size:10px; letter-spacing:0.24em;
+    text-transform:uppercase; font-weight:500;
+  }
+
+  /* ── PERSISTENT CALL BUTTON ── */
+  .sticky-cta {
+    display:block; position:fixed; bottom:0; left:0; right:0; z-index:110;
+    border:none; cursor:pointer; width:100%; padding:17px 20px;
+    background:var(--forest); color:#fff; font-family:'Jost',sans-serif;
+    font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+    font-weight:500; box-shadow:0 -4px 22px rgba(0,0,0,0.14);
+    transition:transform 0.25s ease;
+  }
+  .sticky-cta.is-hidden { transform:translateY(100%); }
+  body { padding-bottom:56px; }
 }
 </style>
 </head>
@@ -259,13 +331,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <input type="email" name="email">
   <select name="childage"></select>
   <select name="besttime"></select>
+  <textarea name="message"></textarea>
   <input type="checkbox" name="sms_consent">
   <input type="text" name="source">
 </form>
 
 <header class="masthead">
-  <span class="masthead-name">Josiah Thurlow</span>
-  <span class="masthead-sub">Mental Wellness &amp; Guidance · Boca Raton, FL</span>
+  <div class="masthead-brand">
+    <span class="masthead-name">Josiah Thurlow</span>
+    <span class="masthead-sub">Mental Wellness &amp; Guidance · Boca Raton, FL</span>
+  </div>
+  <button class="mnav-toggle" id="mnavToggle" type="button"
+          aria-expanded="false" aria-controls="mnavPanel" onclick="lpToggleNav()">
+    <span class="mnav-bars"><i></i><i></i><i></i></span> Contact
+  </button>
+  <div class="mnav-panel" id="mnavPanel">
+    <a class="mnav-item" href="tel:+15617034449"><span>Call</span>(561) 703-4449</a>
+    <a class="mnav-item" href="sms:+15617034449"><span>Text</span>(561) 703-4449</a>
+    <a class="mnav-item" href="https://wa.me/15617034449?text=Hi%20Josiah%2C%20I%27d%20like%20to%20ask%20about%20a%20free%2020-minute%20call." target="_blank" rel="noopener"><span>WhatsApp</span>(561) 703-4449</a>
+    <a class="mnav-item" href="mailto:contact@josiahthurlow.com"><span>Email</span>contact@josiahthurlow.com</a>
+    <button class="mnav-cta" type="button" onclick="lpToggleNav(false);lpScrollToForm();">Request your free call &rarr;</button>
+  </div>
 </header>
 
 <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
@@ -324,6 +410,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="Evening (after 5pm)">Evening (after 5pm)</option>
               <option value="Any time">Any time works</option>
             </select>
+          </div>
+          <div class="field">
+            <label for="h_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
+            <textarea id="h_msg" name="message" rows="3"
+                      placeholder="A sentence or two is plenty."></textarea>
           </div>
           <div class="consent">
             <input type="checkbox" id="h_sms" name="sms_consent" value="yes">
@@ -493,6 +584,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <option value="Any time">Any time works</option>
           </select>
         </div>
+        <div class="field">
+          <label for="f_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
+          <textarea id="f_msg" name="message" rows="3"
+                    placeholder="A sentence or two is plenty."></textarea>
+        </div>
         <div class="consent">
           <input type="checkbox" id="f_sms" name="sms_consent" value="yes">
           <label for="f_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
@@ -503,6 +599,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<button class="sticky-cta" id="stickyCta" type="button" onclick="lpScrollToForm()">
+  Request your free call &rarr;
+</button>
 
 <footer class="foot">
   <div class="foot-inner">
@@ -535,6 +635,63 @@ function trackLead(formName, detail) {
   try { if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: formName }); } } catch (e) {}
 }
 
+/* ── Mobile contact menu ────────────────────────────────────────────────── */
+function lpToggleNav(force) {
+  var panel = document.getElementById('mnavPanel');
+  var btn = document.getElementById('mnavToggle');
+  if (!panel || !btn) { return; }
+  var open = (typeof force === 'boolean') ? force : !panel.classList.contains('is-open');
+  panel.classList.toggle('is-open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function (e) {
+  var head = document.querySelector('.masthead');
+  if (head && !head.contains(e.target)) { lpToggleNav(false); }
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { lpToggleNav(false); }
+});
+
+/* ── Jump to the next form and land in the first field ──────────────────── */
+function lpScrollToForm() {
+  var forms = Array.prototype.slice.call(document.querySelectorAll('.card form.lead-form'));
+  if (!forms.length) { return; }
+  var y = window.pageYOffset || document.documentElement.scrollTop;
+  var target = null;
+  for (var i = 0; i < forms.length; i++) {
+    if (forms[i].getBoundingClientRect().top > 60) { target = forms[i]; break; }
+  }
+  if (!target) { target = forms[forms.length - 1]; }
+  var head = document.querySelector('.masthead');
+  var sticky = head && window.getComputedStyle(head).position === 'sticky';
+  var offset = (sticky ? head.offsetHeight : 0) + 16;
+  var top = target.getBoundingClientRect().top + y - offset;
+  window.scrollTo({ top: (top < 0 ? 0 : top), behavior: 'smooth' });
+  var first = target.querySelector('input[name="name"]');
+  if (first) {
+    setTimeout(function () {
+      try { first.focus({ preventScroll: true }); } catch (e) {}
+    }, 650);
+  }
+}
+
+/* ── The call button steps aside whenever a form is already on screen ───── */
+(function () {
+  var bar = document.getElementById('stickyCta');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  if (!bar || !cards.length || !('IntersectionObserver' in window)) { return; }
+  var seen = cards.map(function () { return false; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var i = cards.indexOf(entry.target);
+      if (i > -1) { seen[i] = entry.isIntersecting; }
+    });
+    var anyVisible = seen.some(function (v) { return v; });
+    bar.classList.toggle('is-hidden', anyVisible);
+  }, { threshold: 0.15 });
+  cards.forEach(function (c) { io.observe(c); });
+})();
+
 document.querySelectorAll('form.lead-form').forEach(function (form) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -561,6 +718,8 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
         '<h3>Thank you.</h3>' +
         '<p>Josiah will personally reach out within 24 hours, in the time window you chose. If it\'s urgent, call or text <a href="tel:+15617034449" style="color:var(--sage);">(561) 703-4449</a>, or message him on <a href="https://wa.me/15617034449?text=Hi%20Josiah%2C%20I%27d%20like%20to%20ask%20about%20a%20free%2020-minute%20call." target="_blank" rel="noopener" style="color:var(--sage);">WhatsApp</a>.</p>' +
       '</div>';
+    var bar = document.getElementById('stickyCta');
+    if (bar) { bar.parentNode.removeChild(bar); document.body.style.paddingBottom = '0'; }
     window.scrollTo({ top: top, behavior: 'smooth' });
   });
 });
