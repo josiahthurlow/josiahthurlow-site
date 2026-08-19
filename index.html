@@ -1732,6 +1732,30 @@ footer {
   .sticky-mobile-cta { display: block; }
   .hamburger { display: flex !important; }
 }
+
+/* --- Two-step lead form ------------------------------------------------- */
+.form-step[hidden]{ display:none; }
+.step2-confirm{
+  display:flex; gap:10px; align-items:flex-start;
+  background:rgba(122,158,135,0.13);
+  border-left:2px solid #7A9E87;
+  padding:14px 16px; margin:0 0 26px;
+  font-family:'Jost',sans-serif; font-size:13.5px; line-height:1.55;
+  color:#3a4a40; font-weight:300;
+}
+.step2-confirm svg{ flex:0 0 auto; margin-top:2px; }
+.step2-confirm strong{ font-weight:500; color:#4A6B55; display:block; }
+.lead-form label .opt{
+  font-size:10px; letter-spacing:0.14em; text-transform:uppercase;
+  color:#9aa89f; font-weight:400; margin-left:6px;
+}
+.btn-skip{
+  display:block; width:100%; margin-top:12px; padding:12px 0;
+  background:none; border:none; cursor:pointer;
+  font-family:'Jost',sans-serif; font-size:13px; font-weight:300;
+  color:#7d8b82; text-decoration:underline; text-underline-offset:3px;
+}
+.btn-skip:hover{ color:#4A6B55; }
 </style>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
@@ -1772,6 +1796,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <input type="checkbox" name="sms_consent">
   <textarea name="message"></textarea>
   <input type="text" name="source">
+  <input type="text" name="lead_stage">
+  <input type="text" name="lead_id">
 </form>
 <form name="guide-download" netlify netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="form-name" value="guide-download">
@@ -2105,39 +2131,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="book-form" id="bookForm">
         <div class="lead-form-wrap">
-        <form id="callRequestForm" class="lead-form" data-success="call" data-source="page"
+        <form id="callRequestForm" class="lead-form" data-twostep="true" data-success="call" data-source="page"
               name="call-request" method="POST" data-netlify="true" netlify
               netlify-honeypot="bot-field" action="/" autocomplete="on">
           <input type="hidden" name="form-name" value="call-request">
           <input type="hidden" name="source" value="page">
+          <input type="hidden" name="lead_stage" value="">
+          <input type="hidden" name="lead_id" value="">
           <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
           <div class="form-title">Request a call.</div>
-          <div class="form-sub">Free · 20 minutes · Josiah calls you back within 24 hours</div>
-          <div class="form-group">
-            <label for="cf_name">Your Name</label>
-            <input type="text" id="cf_name" name="name" autocomplete="name" required placeholder="First and last name">
-          </div>
-          <div class="form-group">
-            <label for="cf_phone">Phone Number</label>
-            <input type="tel" id="cf_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
-          </div>
-          <div class="form-group">
-            <label for="cf_email">Email Address</label>
-            <input type="email" id="cf_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
-          </div>
-          <div class="form-group">
-            <label for="cf_besttime">Best Time To Reach You</label>
-            <select id="cf_besttime" name="besttime" required>
-              <option value="" disabled selected>Select a window</option>
+      <div class="form-sub">Free &middot; 20 minutes &middot; Josiah calls you back within 24 hours</div>
+
+      <!-- STEP 1 — the only thing required to become a lead: name + phone. -->
+      <div class="form-step" data-step="1">
+        <div class="form-group">
+          <label for="cf_name">Your Name</label>
+          <input type="text" id="cf_name" name="name" autocomplete="name" required placeholder="First and last name">
+        </div>
+        <div class="form-group">
+          <label for="cf_phone">Phone Number</label>
+          <input type="tel" id="cf_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
+        </div>
+        <div class="form-note">Your information is private. Submitting this form does not establish a professional relationship.</div>
+        <button type="submit" class="btn-form">Request My Free Call →</button>
+      </div>
+
+      <!-- STEP 2 — everything here is optional. The lead is already captured. -->
+      <div class="form-step" data-step="2" hidden>
+        <div class="step2-confirm">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="#4A6B55" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Got it — Josiah will call you within 24 hours.</strong> If you'd like, add a few details so he can prepare. Totally optional.</span>
+        </div>
+        <div class="form-group">
+          <label for="cf_besttime">Best Time To Reach You <span class="opt">optional</span></label>
+          <select id="cf_besttime" name="besttime">
+              <option value="Any time" selected>Any time works</option>
               <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
               <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
               <option value="Evening (after 5pm)">Evening (after 5pm)</option>
-              <option value="Any time">Any time works</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cf_topic">I'm Looking For Help With</label>
-            <select id="cf_topic" name="topic">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf_topic">I'm Looking For Help With <span class="opt">optional</span></label>
+          <select id="cf_topic" name="topic">
               <option value="" disabled selected>Select a topic</option>
               <option value="Parent seeking help for my child">I'm a parent seeking help for my child</option>
               <option value="Teen / young adult support">Teen / young adult support</option>
@@ -2149,19 +2185,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="In-home session">In-home session (Palm Beach County)</option>
               <option value="Group session">Group session</option>
               <option value="Something else">Something else</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="cf_message">Anything else? (optional)</label>
-            <textarea id="cf_message" name="message" placeholder="Share as much or as little as you'd like..."></textarea>
-          </div>
-          <div class="consent-row">
-            <input type="checkbox" id="cf_sms" name="sms_consent" value="yes">
-            <label for="cf_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
-          </div>
-          <div class="form-note">Your information is private. Submitting this form does not establish a professional relationship.</div>
-          <button type="submit" class="btn-form">Send My Request →</button>
-        </form>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cf_email">Email Address <span class="opt">optional</span></label>
+          <input type="email" id="cf_email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label for="cf_message">Anything else? <span class="opt">optional</span></label>
+          <textarea id="cf_message" name="message" placeholder="Share as much or as little as you'd like..."></textarea>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="cf_sms" name="sms_consent" value="yes">
+          <label for="cf_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
+        </div>
+        <button type="button" class="btn-form" data-step2-send>Send These Details →</button>
+        <button type="button" class="btn-skip" data-step2-skip>No thanks, I'm all set</button>
+      </div>
+      </form>
         </div>
       </div>
     </div>
@@ -2414,39 +2455,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="lead-modal-inner">
     <button class="lead-modal-close" onclick="closeBooking()" aria-label="Close">&times;</button>
     <div class="lead-form-wrap">
-    <form id="modalLeadForm" class="lead-form" data-success="call" data-source="modal"
+    <form id="modalLeadForm" class="lead-form" data-twostep="true" data-success="call" data-source="modal"
           name="call-request" method="POST" data-netlify="true" netlify
           netlify-honeypot="bot-field" action="/" autocomplete="on">
       <input type="hidden" name="form-name" value="call-request">
       <input type="hidden" name="source" value="modal">
+      <input type="hidden" name="lead_stage" value="">
+      <input type="hidden" name="lead_id" value="">
       <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
       <div class="form-title">Start with a free call.</div>
-      <div class="form-sub">20 minutes · No commitment · Josiah calls you back within 24 hours</div>
-      <div class="form-group">
-        <label for="mf_name">Your Name</label>
-        <input type="text" id="mf_name" name="name" autocomplete="name" required placeholder="First and last name">
+      <div class="form-sub">20 minutes &middot; No commitment &middot; Josiah calls you back within 24 hours</div>
+
+      <!-- STEP 1 — the only thing required to become a lead: name + phone. -->
+      <div class="form-step" data-step="1">
+        <div class="form-group">
+          <label for="mf_name">Your Name</label>
+          <input type="text" id="mf_name" name="name" autocomplete="name" required placeholder="First and last name">
+        </div>
+        <div class="form-group">
+          <label for="mf_phone">Phone Number</label>
+          <input type="tel" id="mf_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
+        </div>
+        <div class="form-note">Your information is private. Submitting this form does not establish a professional relationship.</div>
+        <button type="submit" class="btn-form">Request My Free Call →</button>
       </div>
-      <div class="form-group">
-        <label for="mf_phone">Phone Number</label>
-        <input type="tel" id="mf_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
-      </div>
-      <div class="form-group">
-        <label for="mf_email">Email Address</label>
-        <input type="email" id="mf_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
-      </div>
-      <div class="form-group">
-        <label for="mf_besttime">Best Time To Reach You</label>
-        <select id="mf_besttime" name="besttime" required>
-              <option value="" disabled selected>Select a window</option>
+
+      <!-- STEP 2 — everything here is optional. The lead is already captured. -->
+      <div class="form-step" data-step="2" hidden>
+        <div class="step2-confirm">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="#4A6B55" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+          <span><strong>Got it — Josiah will call you within 24 hours.</strong> If you'd like, add a few details so he can prepare. Totally optional.</span>
+        </div>
+        <div class="form-group">
+          <label for="mf_besttime">Best Time To Reach You <span class="opt">optional</span></label>
+          <select id="mf_besttime" name="besttime">
+              <option value="Any time" selected>Any time works</option>
               <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
               <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
               <option value="Evening (after 5pm)">Evening (after 5pm)</option>
-              <option value="Any time">Any time works</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="mf_topic">I'm Looking For Help With</label>
-        <select id="mf_topic" name="topic">
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mf_topic">I'm Looking For Help With <span class="opt">optional</span></label>
+          <select id="mf_topic" name="topic">
               <option value="" disabled selected>Select a topic</option>
               <option value="Parent seeking help for my child">I'm a parent seeking help for my child</option>
               <option value="Teen / young adult support">Teen / young adult support</option>
@@ -2458,19 +2509,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="In-home session">In-home session (Palm Beach County)</option>
               <option value="Group session">Group session</option>
               <option value="Something else">Something else</option>
-        </select>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mf_email">Email Address <span class="opt">optional</span></label>
+          <input type="email" id="mf_email" name="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label for="mf_message">Anything else? <span class="opt">optional</span></label>
+          <textarea id="mf_message" name="message" placeholder="Share as much or as little as you'd like..."></textarea>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="mf_sms" name="sms_consent" value="yes">
+          <label for="mf_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
+        </div>
+        <button type="button" class="btn-form" data-step2-send>Send These Details →</button>
+        <button type="button" class="btn-skip" data-step2-skip>No thanks, I'm all set</button>
       </div>
-      <div class="form-group">
-        <label for="mf_message">Anything else? (optional)</label>
-        <textarea id="mf_message" name="message" placeholder="Share as much or as little as you'd like..."></textarea>
-      </div>
-      <div class="consent-row">
-        <input type="checkbox" id="mf_sms" name="sms_consent" value="yes">
-        <label for="mf_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
-      </div>
-      <div class="form-note">Your information is private. Submitting this form does not establish a professional relationship.</div>
-      <button type="submit" class="btn-form">Send My Request →</button>
-    </form>
+      </form>
     </div>
   </div>
 </div>
@@ -2559,7 +2615,7 @@ function leadThanksCall() {
       '</div>' +
       '<p class="lead-thanks-eyebrow">Request Received</p>' +
       '<h2 class="lead-thanks-title">Thank you.<br><em style="font-style:italic;color:#B8D0C0;">We\'ll be in touch.</em></h2>' +
-      '<p class="lead-thanks-body">Josiah will personally reach out within 24 hours, in the time window you chose, to set up your free 20-minute call.</p>' +
+      '<p class="lead-thanks-body">Josiah will personally reach out within 24 hours to set up your free 20-minute call.</p>' +
     '</div>';
 }
 
@@ -2572,7 +2628,8 @@ function leadThanksGuide() {
     '</div>';
 }
 
-document.querySelectorAll('form.lead-form').forEach(function (form) {
+/* Forms not marked data-twostep (the guide form) keep the one-shot flow. */
+document.querySelectorAll('form.lead-form:not([data-twostep])').forEach(function (form) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -2604,7 +2661,90 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
     }
   });
 });
-</script>
+
+/* ==========================================================================
+   TWO-STEP CALL FORM
+   --------------------------------------------------------------------------
+   Step 1 asks only for name + phone and posts to Netlify immediately, so a
+   lead is captured even if the person stops there. Step 2 is optional detail
+   and posts a SECOND entry. Match the two in Netlify by lead_id (or phone);
+   lead_stage tells you which is which: "step1" or "details".
+   ========================================================================== */
+function postLead(form, stage) {
+  var idField = form.querySelector('input[name="lead_id"]');
+  if (idField && !idField.value) {
+    idField.value = 'L' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+  var stageField = form.querySelector('input[name="lead_stage"]');
+  if (stageField) { stageField.value = stage; }
+
+  var data = new FormData(form);
+  if (stage === 'step1') {
+    /* Don't send empty step-2 fields on the first post. */
+    ['besttime', 'topic', 'email', 'message', 'sms_consent'].forEach(function (k) { data.delete(k); });
+  }
+  return fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(data).toString()
+  }).catch(function () {});
+}
+
+function showLeadThanks(form) {
+  var wrap = form.closest('.lead-form-wrap') || form.parentElement;
+  var top = wrap.getBoundingClientRect().top + window.pageYOffset - 120;
+  wrap.innerHTML = leadThanksCall();
+  if (!form.closest('.lead-modal')) {
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+}
+
+document.querySelectorAll('form.lead-form[data-twostep]').forEach(function (form) {
+  var step1 = form.querySelector('[data-step="1"]');
+  var step2 = form.querySelector('[data-step="2"]');
+
+  /* STEP 1 — this is the conversion. */
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    var btn = step1.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+    await postLead(form, 'step1');
+
+    trackLead(form.querySelector('input[name="form-name"]').value || 'call-request', {
+      source: form.getAttribute('data-source') || '',
+      topic: ''
+    });
+
+    step1.hidden = true;
+    step2.hidden = false;
+    if (!form.closest('.lead-modal')) {
+      var t = form.getBoundingClientRect().top + window.pageYOffset - 120;
+      window.scrollTo({ top: (t < 0 ? 0 : t), behavior: 'smooth' });
+    } else {
+      var inner = form.closest('.lead-modal-inner');
+      if (inner) { inner.scrollTop = 0; }
+    }
+  });
+
+  /* STEP 2 — optional extra detail, posted as a second entry. */
+  var sendBtn = form.querySelector('[data-step2-send]');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', async function () {
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending...';
+      await postLead(form, 'details');
+      showLeadThanks(form);
+    });
+  }
+
+  var skipBtn = form.querySelector('[data-step2-skip]');
+  if (skipBtn) {
+    skipBtn.addEventListener('click', function () { showLeadThanks(form); });
+  }
+});
 </script>
 </body>
 </html>
