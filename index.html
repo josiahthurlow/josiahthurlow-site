@@ -1303,9 +1303,11 @@ footer {
      even on wide/short screens where max-height caps the box. */
   /* Photo first on mobile. Capped at 44vh so the face, the promise and the
      button all land on the opening screen without scrolling. */
-  .hero-right { order: -1; display: block; height: 38vh; min-height: 240px; max-height: 360px; aspect-ratio: auto; }
+  .hero-right { order: -1; display: block; height: 38vh; height: 38svh; min-height: 230px; max-height: 360px; aspect-ratio: auto; }
   .hero-photo-placeholder { min-height: 0 !important; height: 100% !important; }
-  .hero-photo-placeholder img { object-position: center top !important; }
+  /* the mobile file is already framed for this box; the 30% bias just
+     protects the hair on short screens */
+  .hero-photo-placeholder img { object-position: center 30% !important; }
   /* Desktop bleeds the dark column in from the left; on mobile the dark block
      is underneath, so the fade goes down instead. */
   .hero-right::after { background: linear-gradient(to bottom, transparent 72%, rgba(42,42,42,0.5) 100%); }
@@ -1352,6 +1354,21 @@ footer {
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .section, #focus { padding: 80px 32px; }
+}
+
+/* Short phones: tighten the hero so the button stays on the first screen. */
+@media (max-width: 900px) and (max-height: 780px) {
+  .hero-right { height: 30vh; height: 30svh; min-height: 170px; }
+  .hero-headline { font-size: 32px; margin-bottom: 14px; }
+  .hero-sub { font-size: 14px; margin-bottom: 20px; }
+  .hero-left { padding: 24px 28px 88px; }
+  .hero-eyebrow { margin-bottom: 14px; }
+}
+
+/* Very short screens (older phones): drop the secondary link so the button
+   itself never sits under the sticky bar. */
+@media (max-width: 900px) and (max-height: 670px) {
+  .hero-actions .btn-ghost { display: none; }
   .services-inner, .approach-inner, .book-inner { padding: 0 32px; }
   footer { padding: 60px 32px 40px; }
 }
@@ -1875,7 +1892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Mobile: a separately framed crop of the same photo, so the head
              can never be cut regardless of screen size. Also ~127KB instead
              of 12MB, which matters a lot for mobile load time. -->
-        <source media="(max-width: 900px)" srcset="/images/josiah-hero-mobile.jpg">
+        <source media="(max-width: 900px)" srcset="/images/josiah-hero-mobile-v2.jpg">
         <img src="/images/josiah-hero.jpg" width="1300" height="2310" fetchpriority="high" alt="Josiah Thurlow" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;">
       </picture>
     </div>
