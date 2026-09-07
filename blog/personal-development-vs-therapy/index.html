@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Personal Development vs. Therapy: What's the Difference? — Josiah Thurlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -27,8 +29,46 @@ h1{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:500;line-he
 .cta-btn{display:inline-block;background:var(--sage);color:#fff;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;padding:15px 36px;text-decoration:none;font-weight:500;}
 @media(max-width:768px){article{padding:60px 32px 80px;}header{padding:24px 32px;}h1{font-size:36px;}}
 </style>
+<meta name="description" content="Therapy treats and diagnoses. Personal development starts from the premise that you are not broken. How to tell which one fits where you are.">
+<link rel="canonical" href="https://josiahthurlow.com/blog/personal-development-vs-therapy/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Personal Development vs. Therapy: What's the Difference?">
+<meta property="og:description" content="Therapy treats and diagnoses. Personal development starts from the premise that you are not broken. How to tell which one fits where you are.">
+<meta property="og:url" content="https://josiahthurlow.com/blog/personal-development-vs-therapy/">
+<meta property="og:image" content="https://josiahthurlow.com/images/josiah-hero.jpg">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18306001834"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18306001834');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1040800072035550');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
+
+<!-- Meta Pixel noscript fallback (page view, no-JS) -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
+/></noscript>
+
 <header>
   <a href="/" class="logo">Josiah Thurlow</a>
   <a href="/blog" class="back">← All articles</a>
@@ -56,8 +96,18 @@ h1{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:500;line-he
 <p>There's no shame in either direction. The goal is to get the right support for where you actually are.</p></div>
   <div class="cta-box">
     <p>Ready to take the next step? Start with a free 20-minute call — no commitment, just a conversation.</p>
-    <a href="https://calendly.com/josiah-josiahthurlow/20-minute-meeting" target="_blank" class="cta-btn">Book My Free Call →</a>
+    <a href="/?call=1&amp;from=blog-personal-development-vs-therapy" class="cta-btn" onclick="blogCtaClick()">Request My Free Call →</a>
   </div>
 </article>
+
+<script>
+/* Fires when someone leaves an article for the form. Not a lead yet, but it
+   tells you which article actually pushes people toward the call. */
+function blogCtaClick(){
+  try { if (typeof fbq === 'function') { fbq('trackCustom', 'BlogCtaClick', { article: 'blog-personal-development-vs-therapy' }); } } catch(e){}
+  try { if (typeof gtag === 'function') { gtag('event', 'blog_cta_click', { article: 'blog-personal-development-vs-therapy' }); } } catch(e){}
+  return true;
+}
+</script>
 </body>
 </html>
