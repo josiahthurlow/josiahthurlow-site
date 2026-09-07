@@ -1303,16 +1303,18 @@ footer {
      even on wide/short screens where max-height caps the box. */
   /* Photo first on mobile. Capped at 44vh so the face, the promise and the
      button all land on the opening screen without scrolling. */
-  .hero-right { order: -1; display: block; height: 38vh; height: 38svh; min-height: 230px; max-height: 360px; aspect-ratio: auto; }
+  .hero-right { order: -1; display: block; height: 46vh; height: 46svh; min-height: 250px; max-height: 400px; aspect-ratio: auto; }
   .hero-photo-placeholder { min-height: 0 !important; height: 100% !important; }
   /* the mobile file is already framed for this box; the 30% bias just
      protects the hair on short screens */
   .hero-photo-placeholder img { object-position: center 30% !important; }
   /* Desktop bleeds the dark column in from the left; on mobile the dark block
      is underneath, so the fade goes down instead. */
-  .hero-right::after { background: linear-gradient(to bottom, transparent 72%, rgba(42,42,42,0.5) 100%); }
+  .hero-right::after { background: linear-gradient(to bottom, transparent 42%, rgba(42,42,42,0.55) 76%, #2A2A2A 100%); }
+  .hero-right { margin-bottom: -78px; }
+  .hero-left { position: relative; z-index: 3; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 78px); }
   /* extra bottom padding so the button never sits under the sticky bar */
-  .hero-left { padding: 32px 28px 96px; }
+  .hero-left { padding: 86px 28px 96px; }
   .hero-eyebrow { margin-bottom: 18px; font-size: 9.5px; letter-spacing: 0.26em; }
   .hero-headline { font-size: 38px; margin-bottom: 18px; }
   .hero-sub { font-size: 14.5px; margin-bottom: 26px; line-height: 1.65; }
@@ -1358,10 +1360,10 @@ footer {
 
 /* Short phones: tighten the hero so the button stays on the first screen. */
 @media (max-width: 900px) and (max-height: 780px) {
-  .hero-right { height: 30vh; height: 30svh; min-height: 170px; }
+  .hero-right { height: 36vh; height: 36svh; min-height: 180px; margin-bottom: -66px; }
   .hero-headline { font-size: 32px; margin-bottom: 14px; }
   .hero-sub { font-size: 14px; margin-bottom: 20px; }
-  .hero-left { padding: 24px 28px 88px; }
+  .hero-left { padding: 74px 28px 88px; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 66px); }
   .hero-eyebrow { margin-bottom: 14px; }
 }
 
@@ -1369,6 +1371,10 @@ footer {
    itself never sits under the sticky bar. */
 @media (max-width: 900px) and (max-height: 670px) {
   .hero-actions .btn-ghost { display: none; }
+  .hero-right { height: 28vh; height: 28svh; min-height: 150px; margin-bottom: -58px; }
+  .hero-left { padding: 66px 26px 84px; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 58px); }
+  .hero-headline { font-size: 29px; margin-bottom: 12px; }
+  .hero-sub { font-size: 13.5px; line-height: 1.55; margin-bottom: 18px; }
   .services-inner, .approach-inner, .book-inner { padding: 0 32px; }
   footer { padding: 60px 32px 40px; }
 }
@@ -1876,7 +1882,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-eyebrow">Boca Raton, Florida · In-Person & Online · Free 20-Minute Call</div>
+    <div class="hero-eyebrow">Boca Raton · Delray Beach · West Palm Beach · Free 20-Minute Call</div>
     <h1 class="hero-headline">Real conversations.<br><em>Real change.</em></h1>
     <p class="hero-sub">Whether it's a teenager who's shut down, a family that can't find common ground, or a young adult carrying more than they let on — the first step is just saying it out loud. That's what sessions are for.</p>
     <div class="hero-actions">
