@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Counseling Support for Teens &amp; Young Adults — Boca Raton | Josiah Thurlow</title>
-<meta name="description" content="Sessions for teenagers and young adults in Boca Raton and Palm Beach County, in person, online, or in your home. Start with a free 20-minute call.">
+<title>Counseling Support for Teens &amp; Young Adults — Boca Raton, Delray Beach &amp; West Palm Beach | Josiah Thurlow</title>
+<meta name="description" content="Sessions for teenagers and young adults in Boca Raton, Delray Beach and West Palm Beach, in person, online, or in your home across Palm Beach County. Start with a free 20-minute call.">
 <meta name="robots" content="noindex, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,6 +91,17 @@ a { color:inherit; }
   font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
   color:var(--mid); margin-top:14px;
 }
+.hero-visual-m { display:none; }
+.vid-wrap { position:relative; background:var(--stone); }
+.vid { width:100%; display:block; aspect-ratio:9/16; object-fit:cover; background:var(--stone); }
+.vid-sound {
+  position:absolute; left:12px; bottom:12px; z-index:2; cursor:pointer;
+  border:none; border-radius:100px; padding:9px 15px;
+  background:rgba(42,42,42,0.72); color:#fff; backdrop-filter:blur(6px);
+  font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.12em;
+  text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:7px;
+}
+.vid-sound.is-off { display:none; }
 
 /* ── FORM CARD ── */
 .card {
@@ -213,6 +224,9 @@ a { color:inherit; }
   font-size:14px; line-height:1.7; margin-top:30px;
 }
 
+.vid-standalone { max-width:330px; margin:32px 0 0; }
+.vid-standalone .vid { aspect-ratio:9/16; }
+
 /* ── CLOSING ── */
 .close { background:var(--charcoal); padding:92px 6vw; }
 .close-inner {
@@ -236,7 +250,10 @@ a { color:inherit; }
   .hero { padding:48px 26px 62px; }
   .hero-inner { grid-template-columns:1fr; gap:38px; }
   .hero-copy { order:1; }
-  .hero-visual { order:2; }
+  .hero-visual { display:none; }
+  .hero-visual-m { display:block; margin:30px 0 6px; }
+  /* Not the full 9:16 — a tall video would push the form off the screen. */
+  .hero-visual-m .vid { aspect-ratio:4/5; max-height:52vh; object-position:center 18%; }
   .hero h1 { font-size:40px; }
   .hero-sub { font-size:16px; }
   .card { padding:32px 24px 28px; }
@@ -379,7 +396,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="mnav-panel" id="mnavPanel">
     <a class="mnav-item" href="tel:+15617034449"><span>Call</span>(561) 703-4449</a>
     <a class="mnav-item" href="sms:+15617034449"><span>Text</span>(561) 703-4449</a>
-    <a class="mnav-item" href="https://wa.me/15617034449?text=Hi%20Josiah%2C%20I%27d%20like%20to%20ask%20about%20a%20free%2020-minute%20call." target="_blank" rel="noopener"><span>WhatsApp</span>(561) 703-4449</a>
     <a class="mnav-item" href="mailto:contact@josiahthurlow.com"><span>Email</span>contact@josiahthurlow.com</a>
     <button class="mnav-cta" type="button" onclick="lpToggleNav(false);lpScrollToForm();">Request your free call &rarr;</button>
   </div>
@@ -389,14 +405,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-copy">
-      <div class="eyebrow">For Parents in Boca Raton &amp; Palm Beach County</div>
+      <div class="eyebrow">For Parents in Boca Raton, Delray Beach &amp; West Palm Beach</div>
       <h1 class="display">You don't have to<br>carry this <em>alone.</em></h1>
-      <p class="hero-sub">Josiah works with teenagers and young adults who have stopped opening up &mdash; and with the parents trying to reach them. In person in Boca Raton, online, or in your own home across Palm Beach County.</p>
+      <p class="hero-sub">Josiah works with teenagers and young adults who have stopped opening up &mdash; and with the parents trying to reach them. In person in Boca Raton, Delray Beach or West Palm Beach, online, or in your own home across Palm Beach County.</p>
       <ul class="hero-points">
         <li><span class="tick"></span> Sessions for your teen, and separate guidance sessions for you</li>
         <li><span class="tick"></span> Someone they'll actually talk to &mdash; not a waiting room and a clipboard</li>
         <li><span class="tick"></span> Every family starts with a free 20-minute call &mdash; no paperwork, no commitment</li>
       </ul>
+
+      <!-- Mobile only: the parent sees who is going to call before being asked
+           for a phone number. Same file as the desktop photo, so no extra load. -->
+      <div class="hero-visual-m">
+        <div class="vid-wrap">
+          <video class="vid" id="heroVideo" playsinline muted loop preload="none"
+                 poster="images/josiah-parents-poster.jpg">
+            <source src="images/josiah-parents.mp4" type="video/mp4">
+          </video>
+          <button class="vid-sound" id="heroVideoSound" type="button" aria-label="Turn sound on">
+            <span class="vid-sound-ico">🔊</span> Tap for sound
+          </button>
+        </div>
+        <div class="hero-photo-cap">Josiah Thurlow · M.S. Mental Health Counseling</div>
+      </div>
 
       <div class="card" id="start">
         <div class="form-wrap">
@@ -422,9 +453,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input type="email" id="h_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
           </div>
           <div class="field">
-            <label for="h_age">Your Child's Age</label>
-            <select id="h_age" name="childage" required>
-              <option value="" disabled selected>Select an age range</option>
+            <label for="h_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+            <select id="h_age" name="childage">
+              <option value="" selected>Select an age range</option>
               <option value="12 or younger">12 or younger</option>
               <option value="13-15">13 &ndash; 15</option>
               <option value="16-17">16 &ndash; 17</option>
@@ -433,9 +464,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </select>
           </div>
           <div class="field">
-            <label for="h_time">Best Time To Reach You</label>
-            <select id="h_time" name="besttime" required>
-              <option value="" disabled selected>Select a window</option>
+            <label for="h_time">Best Time To Reach You <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+            <select id="h_time" name="besttime">
+              <option value="" selected>Select a window</option>
               <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
               <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
               <option value="Evening (after 5pm)">Evening (after 5pm)</option>
@@ -459,7 +490,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
     <div class="hero-visual">
-      <img class="hero-photo" src="images/hero-photo-mobile.jpg" alt="Josiah Thurlow">
+      <img class="hero-photo" src="images/hero-photo-mobile.jpg" alt="Josiah Thurlow" loading="lazy">
       <div class="hero-photo-cap">Josiah Thurlow · M.S. Mental Health Counseling</div>
     </div>
   </div>
@@ -516,8 +547,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="local">
   <div class="local-inner">
     <div class="local-item">
-      <h4>Boca Raton</h4>
-      <p>In-person sessions, with in-home visits available across Palm Beach County.</p>
+      <h4>Boca Raton · Delray Beach · West Palm Beach</h4>
+      <p>In-person sessions at all three, with in-home visits available across Palm Beach County.</p>
     </div>
     <div class="local-item">
       <h4>Online</h4>
@@ -535,31 +566,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="who-inner">
     <div class="eyebrow">Who You'd Be Talking To</div>
     <h2 class="display">Josiah Thurlow.</h2>
-    <p>Josiah holds a Master's degree in Mental Health Counseling and works with teenagers, young adults, and families in Boca Raton and online. Most of his week is spent with people who arrived saying almost nothing.</p>
+    <p>Josiah holds a Master's degree in Mental Health Counseling and works with teenagers, young adults, and families in Boca Raton, Delray Beach and West Palm Beach, and online. Most of his week is spent with people who arrived saying almost nothing.</p>
     <p>Teenagers open up differently when the person across from them is actually listening &mdash; without judgment, without an agenda, and without the paperwork that makes it feel like a diagnosis is coming.</p>
 
-    <div class="video-frame">
-      <iframe src="https://player.vimeo.com/video/1202246128?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerpolicy="strict-origin-when-cross-origin" title="Meet Josiah Thurlow"></iframe>
+    <div class="vid-standalone">
+      <video class="vid" id="whoVideo" playsinline controls preload="none"
+             poster="images/josiah-parents-poster.jpg">
+        <source src="images/josiah-parents.mp4" type="video/mp4">
+      </video>
     </div>
 
     <div class="creds">
       <span class="cred"><span class="tick"></span> M.S. Mental Health Counseling</span>
       <span class="cred"><span class="tick"></span> Teens, Young Adults &amp; Families</span>
-      <span class="cred"><span class="tick"></span> Boca Raton · Online · In-Home</span>
+      <span class="cred"><span class="tick"></span> Boca Raton, Delray Beach &amp; West Palm Beach · Online · In-Home</span>
     </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════ CLARITY ════════════════════════════ -->
-<section class="clarity">
-  <div class="clarity-inner">
-    <div class="eyebrow">What This Is</div>
-    <h2 class="display">Clarity about the work.</h2>
-    <p>Josiah holds a Master's degree in Mental Health Counseling, and the work draws on that training &mdash; but it is not therapy, and Josiah is not a licensed therapist. He does not assess, diagnose, or treat mental disorders. Instead, he provides guided reflection, practical skills training, and evidence-informed strategies to help clients navigate real-life challenges, develop greater self-awareness, strengthen resilience, and build healthier patterns of thinking and behavior.</p>
-    <p>For many people &mdash; especially teenagers, young adults, and men &mdash; this is exactly the kind of support that fits: structured, honest, practical, and free of the labels and paperwork that can make traditional clinical settings feel heavier than they need to be.</p>
-    <p class="crisis"><strong>If you're experiencing a mental health crisis,</strong> believe you may have a mental health disorder that requires clinical assessment or treatment, or need urgent care, please seek help from a licensed mental health provider or call or text 988 (Suicide &amp; Crisis Lifeline), available 24/7.</p>
   </div>
 </section>
 
@@ -595,9 +616,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="email" id="f_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
         </div>
         <div class="field">
-          <label for="f_age">Your Child's Age</label>
-          <select id="f_age" name="childage" required>
-            <option value="" disabled selected>Select an age range</option>
+          <label for="f_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+          <select id="f_age" name="childage">
+            <option value="" selected>Select an age range</option>
             <option value="12 or younger">12 or younger</option>
             <option value="13-15">13 &ndash; 15</option>
             <option value="16-17">16 &ndash; 17</option>
@@ -606,9 +627,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </select>
         </div>
         <div class="field">
-          <label for="f_time">Best Time To Reach You</label>
-          <select id="f_time" name="besttime" required>
-            <option value="" disabled selected>Select a window</option>
+          <label for="f_time">Best Time To Reach You <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+          <select id="f_time" name="besttime">
+            <option value="" selected>Select a window</option>
             <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
             <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
             <option value="Evening (after 5pm)">Evening (after 5pm)</option>
@@ -631,6 +652,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- ════════════════════════════ CLARITY ════════════════════════════ -->
+<section class="clarity">
+  <div class="clarity-inner">
+    <div class="eyebrow">What This Is</div>
+    <h2 class="display">Clarity about the work.</h2>
+    <p>Josiah holds a Master's degree in Mental Health Counseling, and the work draws on that training &mdash; but it is not therapy, and Josiah is not a licensed therapist. He does not assess, diagnose, or treat mental disorders. Instead, he provides guided reflection, practical skills training, and evidence-informed strategies to help clients navigate real-life challenges, develop greater self-awareness, strengthen resilience, and build healthier patterns of thinking and behavior.</p>
+    <p>For many people &mdash; especially teenagers, young adults, and men &mdash; this is exactly the kind of support that fits: structured, honest, practical, and free of the labels and paperwork that can make traditional clinical settings feel heavier than they need to be.</p>
+    <p class="crisis"><strong>If you're experiencing a mental health crisis,</strong> believe you may have a mental health disorder that requires clinical assessment or treatment, or need urgent care, please seek help from a licensed mental health provider or call or text 988 (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+  </div>
+</section>
+
 <button class="sticky-cta" id="stickyCta" type="button" onclick="lpScrollToForm()">
   Request your free call &rarr;
 </button>
@@ -638,8 +670,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer class="foot">
   <div class="foot-inner">
     <p><strong>Josiah Thurlow · Mental Wellness &amp; Guidance</strong><br>
-    Boca Raton, Florida · In-person, online, and in-home across Palm Beach County<br>
-    <a href="tel:+15617034449">(561) 703-4449</a> · <a href="sms:+15617034449">Send a text</a> · <a href="https://wa.me/15617034449?text=Hi%20Josiah%2C%20I%27d%20like%20to%20ask%20about%20a%20free%2020-minute%20call." target="_blank" rel="noopener">WhatsApp</a> · <a href="mailto:contact@josiahthurlow.com">contact@josiahthurlow.com</a></p>
+    Boca Raton, Delray Beach &amp; West Palm Beach · In-person, online, and in-home across Palm Beach County<br>
+    <a href="tel:+15617034449">(561) 703-4449</a> · <a href="sms:+15617034449">Send a text</a> · <a href="mailto:contact@josiahthurlow.com">contact@josiahthurlow.com</a></p>
     <p style="margin-top:14px;">This service is not therapy and does not include assessment, diagnosis, or treatment of mental disorders. Submitting a form does not establish a professional relationship. In a crisis, call or text 988.</p>
     <p style="margin-top:14px;">&copy; 2026 Josiah Thurlow Mental Wellness &amp; Guidance · All rights reserved</p>
   </div>
@@ -724,6 +756,47 @@ function lpScrollToForm() {
   cards.forEach(function (c) { io.observe(c); });
 })();
 
+/* ── Hero video: nothing is downloaded until it comes into view. Muted
+      autoplay is the only kind browsers allow, and the captions are burned
+      into the picture, so the message lands with the sound off. ───────────── */
+(function () {
+  var v = document.getElementById('heroVideo');
+  var btn = document.getElementById('heroVideoSound');
+  if (!v) { return; }
+
+  function load() {
+    if (v.getAttribute('preload') === 'none') {
+      v.setAttribute('preload', 'auto');
+      v.load();
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { load(); v.play().catch(function(){}); }
+        else { v.pause(); }
+      });
+    }, { threshold: 0.4 });
+    io.observe(v);
+  } else {
+    load();
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      v.muted = !v.muted;
+      if (!v.muted) {
+        v.currentTime = 0;
+        v.play().catch(function(){});
+        btn.classList.add('is-off');
+        try { if (typeof fbq === 'function') { fbq('trackCustom', 'VideoSoundOn'); } } catch(e){}
+        try { if (typeof gtag === 'function') { gtag('event', 'video_sound_on'); } } catch(e){}
+      }
+    });
+  }
+})();
+
 document.querySelectorAll('form.lead-form').forEach(function (form) {
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -732,13 +805,31 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
     if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
 
     var data = new FormData(form);
+
+    /* A failed POST used to still show the thank-you and fire a conversion,
+       so the lead vanished and the ad platforms counted it anyway. */
+    var sent = false;
     try {
-      await fetch('/', {
+      var res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams(data).toString()
       });
-    } catch (err) {}
+      sent = res && res.ok;
+    } catch (err) { sent = false; }
+
+    if (!sent) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Call →'; }
+      var warn = form.querySelector('.form-error');
+      if (!warn) {
+        warn = document.createElement('div');
+        warn.className = 'form-error';
+        warn.style.cssText = 'margin-top:14px;font-family:Jost,sans-serif;font-size:13px;line-height:1.6;color:#C05A4A;';
+        warn.innerHTML = 'Something went wrong sending that. Please try again, or call Josiah at <a href="tel:+15617034449" style="color:#C05A4A;">(561) 703-4449</a>.';
+        form.appendChild(warn);
+      }
+      return;
+    }
 
     trackLead(data.get('form-name') || '', { source: data.get('source') || '' });
 
@@ -748,7 +839,7 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
       '<div class="thanks">' +
         '<div class="thanks-mark"><svg viewBox="0 0 24 24" width="26" height="26" stroke="#fff" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>' +
         '<h3>Thank you.</h3>' +
-        '<p>Josiah will personally reach out within 24 hours, in the time window you chose. If it\'s urgent, call or text <a href="tel:+15617034449" style="color:var(--sage);">(561) 703-4449</a>, or message him on <a href="https://wa.me/15617034449?text=Hi%20Josiah%2C%20I%27d%20like%20to%20ask%20about%20a%20free%2020-minute%20call." target="_blank" rel="noopener" style="color:var(--sage);">WhatsApp</a>.</p>' +
+        '<p>Josiah will personally reach out within 24 hours, in the time window you chose. If it\'s urgent, call or text <a href="tel:+15617034449" style="color:var(--sage);">(561) 703-4449</a>.</p>' +
       '</div>';
     var bar = document.getElementById('stickyCta');
     if (bar) { bar.parentNode.removeChild(bar); document.body.style.paddingBottom = '0'; }
