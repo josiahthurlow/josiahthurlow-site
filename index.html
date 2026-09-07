@@ -2564,6 +2564,26 @@ function closeBooking(){
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeBooking(); } });
+
+/* Links from outside the page (blog posts, emails, the bio link) can open the
+   form straight away with /?call=1 — and /?call=1&from=blog tags the lead so
+   you can see in Netlify which article sent it. */
+(function(){
+  var q = new URLSearchParams(window.location.search);
+  if (q.get('call') !== '1') { return; }
+  var from = q.get('from');
+  function go(){
+    if (from) {
+      var m = document.getElementById('leadModal');
+      var src = m && m.querySelector('input[name="source"]');
+      if (src) { src.value = from; }
+    }
+    openBooking(q.get('topic') || undefined);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', go);
+  } else { go(); }
+})();
 </script>
 
 
