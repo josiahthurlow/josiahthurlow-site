@@ -92,6 +92,14 @@ a { color:inherit; }
   color:var(--mid); margin-top:14px;
 }
 .hero-visual-m { display:none; }
+.opt-toggle{
+  display:inline-block; background:none; border:none; padding:0 0 20px; cursor:pointer;
+  font-family:'Jost',sans-serif; font-size:13px; font-weight:300;
+  color:var(--sage); text-decoration:underline; text-underline-offset:3px;
+}
+.opt-toggle:hover{ color:var(--sage-lt); }
+.opt-fields[hidden]{ display:none; }
+
 .vid-wrap { position:relative; background:var(--stone); }
 .vid { width:100%; display:block; aspect-ratio:9/16; object-fit:cover; background:var(--stone); }
 .vid-sound {
@@ -435,7 +443,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               netlify netlify-honeypot="bot-field" action="/" autocomplete="on">
           <input type="hidden" name="form-name" value="lp-parents">
           <input type="hidden" name="source" value="lp-parents-hero">
-          <p style="display:none;"><label>Skip this: <input name="bot-field"></label></p>
+          <p style="display:none;" aria-hidden="true"><label>Skip this: <input name="bot-field" type="text" autocomplete="off" tabindex="-1"></label></p>
 
           <div class="card-title">Start with a free call.</div>
           <div class="card-sub">20 minutes · Josiah calls you back within 24 hours</div>
@@ -452,6 +460,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <label for="h_email">Email Address</label>
             <input type="email" id="h_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
           </div>
+          <button type="button" class="opt-toggle" data-opt-toggle aria-expanded="false">+ Add details (optional)</button>
+          <div class="opt-fields" hidden>
           <div class="field">
             <label for="h_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
             <select id="h_age" name="childage">
@@ -476,7 +486,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div class="field">
             <label for="h_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
             <textarea id="h_msg" name="message" rows="3"
-                      placeholder="A sentence or two is plenty."></textarea>
+                      placeholder="Share as much or as little as you&#39;d like..."></textarea>
+          </div>
           </div>
           <div class="consent">
             <input type="checkbox" id="h_sms" name="sms_consent" value="yes">
@@ -598,7 +609,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             netlify netlify-honeypot="bot-field" action="/" autocomplete="on">
         <input type="hidden" name="form-name" value="lp-parents">
         <input type="hidden" name="source" value="lp-parents-footer">
-        <p style="display:none;"><label>Skip this: <input name="bot-field"></label></p>
+        <p style="display:none;" aria-hidden="true"><label>Skip this: <input name="bot-field" type="text" autocomplete="off" tabindex="-1"></label></p>
 
         <div class="card-title">Request your free call.</div>
         <div class="card-sub">Josiah calls you back within 24 hours</div>
@@ -615,6 +626,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <label for="f_email">Email Address</label>
           <input type="email" id="f_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
         </div>
+          <button type="button" class="opt-toggle" data-opt-toggle aria-expanded="false">+ Add details (optional)</button>
+          <div class="opt-fields" hidden>
         <div class="field">
           <label for="f_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
           <select id="f_age" name="childage">
@@ -639,8 +652,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="field">
           <label for="f_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
           <textarea id="f_msg" name="message" rows="3"
-                    placeholder="A sentence or two is plenty."></textarea>
+                    placeholder="Share as much or as little as you&#39;d like..."></textarea>
         </div>
+          </div>
         <div class="consent">
           <input type="checkbox" id="f_sms" name="sms_consent" value="yes">
           <label for="f_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
@@ -755,6 +769,18 @@ function lpScrollToForm() {
   }, { threshold: 0.15 });
   cards.forEach(function (c) { io.observe(c); });
 })();
+
+/* ── Optional fields stay folded until someone wants them ─────────────── */
+document.querySelectorAll('[data-opt-toggle]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var box = btn.parentElement.querySelector('.opt-fields');
+    if (!box) { return; }
+    box.hidden = false;
+    btn.hidden = true;
+    var first = box.querySelector('select, textarea');
+    if (first) { first.focus(); }
+  });
+});
 
 /* ── Hero video: nothing is downloaded until it comes into view. Muted
       autoplay is the only kind browsers allow, and the captions are burned
