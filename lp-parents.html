@@ -339,6 +339,8 @@ a { color:inherit; }
 }
 </style>
 
+<script src="/js/attribution.js"></script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18306001834"></script>
 <script>
@@ -390,6 +392,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <textarea name="message"></textarea>
   <input type="checkbox" name="sms_consent">
   <input type="text" name="source">
+  <!-- Attribution — written by /js/attribution.js right before the POST.
+       Declared here because Netlify only records declared fields. -->
+  <input type="hidden" name="utm_source">
+  <input type="hidden" name="utm_medium">
+  <input type="hidden" name="utm_campaign">
+  <input type="hidden" name="utm_content">
+  <input type="hidden" name="utm_term">
+  <input type="hidden" name="gclid">
+  <input type="hidden" name="fbclid">
+  <input type="hidden" name="channel">
+  <input type="hidden" name="referrer">
+  <input type="hidden" name="landing_page">
+  <input type="hidden" name="first_touch">
+  <input type="hidden" name="visit_count">
+  <input type="hidden" name="ga_client_id">
+  <input type="hidden" name="attribution">
 </form>
 
 <header class="masthead">
@@ -830,6 +848,9 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
 
+    /* Stamp utm_*, click IDs, channel and referrer in at the last moment. */
+    try { if (window.jtAttribution) { window.jtAttribution.applyTo(form); } } catch (e) {}
+
     var data = new FormData(form);
 
     /* A failed POST used to still show the thank-you and fire a conversion,
@@ -856,6 +877,19 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
       }
       return;
     }
+
+    /* Netlify holds the lead; the webhook hands it to the CRM. Fired after a
+       confirmed save so a retry cannot duplicate it, and not awaited so the
+       thank-you never waits on the CRM. */
+    try {
+      if (window.jtAttribution) {
+        window.jtAttribution.sendWebhook(
+          window.jtAttribution.payload(data.get('form-name') || '', data, {
+            source: data.get('source') || ''
+          })
+        );
+      }
+    } catch (e) {}
 
     trackLead(data.get('form-name') || '', { source: data.get('source') || '' });
 

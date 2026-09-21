@@ -1784,6 +1784,7 @@ footer {
 .note-toggle:hover{ color:#4A6B55; }
 .note-field[hidden]{ display:none; }
 </style>
+<script src="/js/attribution.js"></script>
 <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- ==========================================================================
@@ -1862,12 +1863,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <input type="checkbox" name="sms_consent">
   <textarea name="message"></textarea>
   <input type="text" name="source">
+  <!-- Attribution — written by /js/attribution.js right before the POST.
+       Declared here because Netlify only records declared fields. -->
+  <input type="hidden" name="utm_source">
+  <input type="hidden" name="utm_medium">
+  <input type="hidden" name="utm_campaign">
+  <input type="hidden" name="utm_content">
+  <input type="hidden" name="utm_term">
+  <input type="hidden" name="gclid">
+  <input type="hidden" name="fbclid">
+  <input type="hidden" name="channel">
+  <input type="hidden" name="referrer">
+  <input type="hidden" name="landing_page">
+  <input type="hidden" name="first_touch">
+  <input type="hidden" name="visit_count">
+  <input type="hidden" name="ga_client_id">
+  <input type="hidden" name="attribution">
 </form>
 <form name="guide-download" netlify netlify-honeypot="bot-field" hidden>
   <input type="hidden" name="form-name" value="guide-download">
   <input name="bot-field">
   <input type="text" name="name">
   <input type="email" name="email">
+  <!-- Attribution — written by /js/attribution.js right before the POST.
+       Declared here because Netlify only records declared fields. -->
+  <input type="hidden" name="utm_source">
+  <input type="hidden" name="utm_medium">
+  <input type="hidden" name="utm_campaign">
+  <input type="hidden" name="utm_content">
+  <input type="hidden" name="utm_term">
+  <input type="hidden" name="gclid">
+  <input type="hidden" name="fbclid">
+  <input type="hidden" name="channel">
+  <input type="hidden" name="referrer">
+  <input type="hidden" name="landing_page">
+  <input type="hidden" name="first_touch">
+  <input type="hidden" name="visit_count">
+  <input type="hidden" name="ga_client_id">
+  <input type="hidden" name="attribution">
 </form>
 
 <!-- NAV -->
@@ -2673,6 +2706,10 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
     var btn = form.querySelector('button[type="submit"]');
     if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
 
+    /* Stamp utm_*, click IDs, channel and referrer in at the last moment, so
+       a modal opened after a second tagged visit still carries the right one. */
+    try { if (window.jtAttribution) { window.jtAttribution.applyTo(form); } } catch (e) {}
+
     var data = new FormData(form);
     var formName = data.get('form-name') || '';
 
@@ -2700,6 +2737,19 @@ document.querySelectorAll('form.lead-form').forEach(function (form) {
       }
       return;
     }
+
+    /* Netlify holds the lead; the webhook hands it to the CRM. Fired after a
+       confirmed save so a retry after a failed POST cannot duplicate it, and
+       not awaited so the thank-you never waits on the CRM. */
+    try {
+      if (window.jtAttribution) {
+        window.jtAttribution.sendWebhook(
+          window.jtAttribution.payload(formName, data, {
+            source: form.getAttribute('data-source') || ''
+          })
+        );
+      }
+    } catch (e) {}
 
     trackLead(formName, {
       source: form.getAttribute('data-source') || '',
