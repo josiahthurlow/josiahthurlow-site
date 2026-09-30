@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Counseling Support for Teens &amp; Young Adults — Boca Raton, Delray Beach &amp; West Palm Beach | Josiah Thurlow</title>
+<meta name="description" content="Sessions for teenagers and young adults in Boca Raton, Delray Beach and West Palm Beach, in person, online, or in your home across Palm Beach County. Start with a free 20-minute call.">
+<meta name="robots" content="noindex, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts load without blocking the first paint (perf, Sep 2026). -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"></noscript>
+<!-- First image on screen: video poster on phones, photo on desktop. -->
+<link rel="preload" as="image" href="images/josiah-parents-poster.jpg" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-photo-mobile.jpg" media="(min-width: 901px)" fetchpriority="high">
+
+<!-- ==========================================================================
+     GOOGLE TAG MANAGER — NOT ACTIVE YET
+     Replace GTM-XXXXXXX with your container ID and remove the comment markers
+     around this block and the noscript one below the opening body tag.
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
+
+     ========================================================================== -->
+
+<style>
+:root {
+  --sage:#7A9E87; --sage-lt:#B8D0C0; --forest:#4A6B55;
+  --stone:#F2EDE6; --stone-dk:#E0D9CF; --charcoal:#2A2A2A;
+  --mist:#D4E2D8; --warm-wh:#FAF8F5; --ink:#1C1C1C;
+  --body:#444444; --mid:#777777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Jost',sans-serif; background:var(--warm-wh);
+  color:var(--body); font-weight:300; -webkit-font-smoothing:antialiased;
+}
+a { color:inherit; }
+:focus-visible { outline:2px solid var(--forest); outline-offset:3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  * { transition:none !important; animation:none !important; }
+}
+.eyebrow {
+  font-size:10px; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--sage); font-weight:500;
+}
+.display {
+  font-family:'Cormorant Garamond',serif; font-weight:500;
+  line-height:1.06; color:var(--ink); letter-spacing:-0.01em;
+}
+.display em { font-style:italic; color:var(--forest); }
+.tick { width:6px; height:6px; background:var(--sage); border-radius:50%; margin-top:8px; flex-shrink:0; }
+
+/* ── MASTHEAD: no navigation, this page has one job ── */
+.masthead {
+  padding:22px 6vw; border-bottom:1px solid var(--stone-dk);
+  display:flex; align-items:baseline; gap:12px; flex-wrap:wrap;
+}
+.masthead-brand { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; min-width:0; }
+
+/* Mobile-only contact menu and persistent call button. Hidden on desktop,
+   where both forms are already in reach. The menu holds contact channels
+   only — no page navigation, so it cannot pull a visitor off the page. */
+.mnav-toggle, .mnav-panel, .sticky-cta { display:none; }
+.masthead-name {
+  font-family:'Cormorant Garamond',serif; font-size:21px;
+  color:var(--ink); font-weight:500; letter-spacing:0.02em;
+}
+.masthead-sub { font-size:9px; letter-spacing:0.24em; text-transform:uppercase; color:var(--mid); }
+
+/* ── HERO ── */
+.hero { padding:72px 6vw 84px; }
+.hero-inner {
+  max-width:1180px; margin:0 auto; display:grid;
+  grid-template-columns:1.1fr 0.9fr; gap:68px; align-items:start;
+}
+.hero h1 { font-size:58px; margin:18px 0 24px; }
+.hero-sub { font-size:18px; line-height:1.7; max-width:30em; }
+.hero-points { list-style:none; margin:28px 0 0; }
+.hero-points li {
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:15px; line-height:1.6; margin-bottom:11px; color:var(--body);
+}
+.hero-photo {
+  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top;
+  display:block; background:var(--stone);
+}
+.hero-photo-cap {
+  font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--mid); margin-top:14px;
+}
+.hero-visual-m { display:none; }
+.opt-toggle{
+  display:inline-block; background:none; border:none; padding:0 0 20px; cursor:pointer;
+  font-family:'Jost',sans-serif; font-size:13px; font-weight:300;
+  color:var(--sage); text-decoration:underline; text-underline-offset:3px;
+}
+.opt-toggle:hover{ color:var(--sage-lt); }
+.opt-fields[hidden]{ display:none; }
+
+.vid-wrap { position:relative; background:var(--stone); }
+.vid { width:100%; display:block; aspect-ratio:9/16; object-fit:cover; background:var(--stone); }
+.vid-sound {
+  position:absolute; left:12px; bottom:12px; z-index:2; cursor:pointer;
+  border:none; border-radius:100px; padding:9px 15px;
+  background:rgba(42,42,42,0.72); color:#fff; backdrop-filter:blur(6px);
+  font-family:'Jost',sans-serif; font-size:11px; letter-spacing:0.12em;
+  text-transform:uppercase; font-weight:500; display:flex; align-items:center; gap:7px;
+}
+.vid-sound.is-off { display:none; }
+
+/* ── FORM CARD ── */
+.card {
+  background:var(--charcoal); padding:40px 36px 32px;
+  box-shadow:0 24px 60px rgba(42,42,42,0.16);
+}
+.hero .card { margin-top:38px; }
+.card-title {
+  font-family:'Cormorant Garamond',serif; font-size:29px; color:var(--warm-wh);
+  font-weight:500; line-height:1.15; margin-bottom:8px;
+}
+.card-sub { font-size:13px; color:rgba(255,255,255,0.5); margin-bottom:26px; }
+.field { margin-bottom:14px; }
+.field label {
+  display:block; font-size:9px; letter-spacing:0.24em; text-transform:uppercase;
+  color:var(--sage-lt); font-weight:500; margin-bottom:7px;
+}
+.field input, .field select, .field textarea {
+  width:100%; background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.14); padding:13px 15px;
+  color:var(--warm-wh); font-family:'Jost',sans-serif; font-size:15px;
+  font-weight:300; outline:none; transition:border-color 0.2s, background 0.2s;
+}
+.field input::placeholder, .field textarea::placeholder { color:rgba(255,255,255,0.28); }
+.field textarea { resize:vertical; min-height:74px; line-height:1.55; }
+.field .opt {
+  color:rgba(255,255,255,0.32); letter-spacing:0.16em; font-weight:400;
+}
+.field input:focus, .field select:focus, .field textarea:focus { border-color:var(--sage); background:rgba(255,255,255,0.1); }
+.field select option { background:var(--charcoal); color:var(--warm-wh); }
+.btn-main {
+  width:100%; border:none; background:var(--sage); color:#fff; padding:17px;
+  font-family:'Jost',sans-serif; font-size:10px; letter-spacing:0.26em;
+  text-transform:uppercase; font-weight:500; cursor:pointer;
+  transition:background 0.2s; margin-top:8px;
+}
+.btn-main:hover { background:var(--forest); }
+.btn-main:disabled { opacity:0.6; cursor:default; }
+.consent { display:flex; gap:10px; align-items:flex-start; margin:2px 0 16px; }
+.consent input { width:15px; height:15px; margin-top:2px; accent-color:var(--sage); flex-shrink:0; }
+.consent label { font-size:11px; line-height:1.55; color:rgba(255,255,255,0.4); }
+.fineprint { font-size:11px; line-height:1.6; color:rgba(255,255,255,0.35); margin-top:16px; }
+.thanks { text-align:center; padding:30px 4px; }
+.thanks-mark {
+  width:54px; height:54px; border-radius:50%; background:var(--sage);
+  margin:0 auto 22px; display:flex; align-items:center; justify-content:center;
+}
+.thanks h3 {
+  font-family:'Cormorant Garamond',serif; font-size:30px;
+  color:var(--warm-wh); font-weight:500; margin-bottom:12px;
+}
+.thanks p { font-size:14px; line-height:1.65; color:rgba(255,255,255,0.6); }
+
+/* ── RECOGNITION ── */
+.recog { background:var(--stone); padding:96px 6vw; }
+.recog-inner { max-width:1080px; margin:0 auto; }
+.recog h2 { font-size:44px; margin:14px 0 52px; max-width:14em; }
+.recog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:34px; }
+.recog-item { border-top:2px solid var(--sage); padding-top:22px; }
+.recog-item h3 {
+  font-family:'Cormorant Garamond',serif; font-size:25px; font-weight:500;
+  color:var(--ink); margin-bottom:10px; font-style:italic;
+}
+.recog-item p { font-size:15px; line-height:1.65; }
+.recog-note { margin-top:48px; font-size:17px; line-height:1.75; max-width:34em; }
+
+/* ── WHAT IT LOOKS LIKE ── */
+.work { padding:96px 6vw; }
+.work-inner { max-width:1080px; margin:0 auto; }
+.work h2 { font-size:44px; margin:14px 0 46px; }
+.work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; }
+.work-card { background:var(--warm-wh); border:1px solid var(--stone-dk); padding:32px 28px; }
+.work-card h3 {
+  font-family:'Cormorant Garamond',serif; font-size:26px; font-weight:500;
+  color:var(--ink); margin-bottom:12px;
+}
+.work-card p { font-size:15px; line-height:1.65; }
+.work-card .meta {
+  margin-top:16px; font-size:11px; letter-spacing:0.16em;
+  text-transform:uppercase; color:var(--forest);
+}
+
+/* ── LOCAL STRIP ── */
+.local { background:var(--mist); padding:56px 6vw; }
+.local-inner {
+  max-width:1080px; margin:0 auto; display:flex;
+  gap:44px; flex-wrap:wrap; justify-content:space-between;
+}
+.local-item { max-width:20em; }
+.local-item h4 {
+  font-family:'Cormorant Garamond',serif; font-size:22px;
+  color:var(--ink); font-weight:500; margin-bottom:6px;
+}
+.local-item p { font-size:14px; line-height:1.6; }
+
+/* ── WHO ── */
+.who { padding:96px 6vw; }
+.who-inner { max-width:1080px; margin:0 auto; }
+.who h2 { font-size:44px; margin:14px 0 28px; }
+.who p { font-size:16px; line-height:1.75; margin-bottom:18px; max-width:36em; }
+.video-frame {
+  position:relative; padding-bottom:56.25%; height:0;
+  margin:40px 0 34px; background:var(--stone);
+}
+.video-frame iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.creds { display:flex; gap:28px; flex-wrap:wrap; margin-top:26px; }
+.cred {
+  font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--forest); display:flex; align-items:center; gap:9px;
+}
+.cred .tick { margin-top:0; }
+
+/* ── CLARITY ── */
+.clarity { background:var(--stone); padding:88px 6vw; }
+.clarity-inner { max-width:760px; margin:0 auto; }
+.clarity h2 { font-size:38px; margin:14px 0 26px; }
+.clarity p { font-size:16px; line-height:1.75; margin-bottom:20px; }
+.crisis {
+  border-left:2px solid var(--forest); padding-left:20px;
+  font-size:14px; line-height:1.7; margin-top:30px;
+}
+
+.vid-standalone { max-width:330px; margin:32px 0 0; }
+.vid-standalone .vid { aspect-ratio:9/16; }
+
+/* ── CLOSING ── */
+.close { background:var(--charcoal); padding:92px 6vw; }
+.close-inner {
+  max-width:1000px; margin:0 auto; display:grid;
+  grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+}
+.close h2 { font-size:44px; color:var(--warm-wh); margin:14px 0 20px; }
+.close h2 em { color:var(--sage-lt); }
+.close p { font-size:16px; line-height:1.75; color:rgba(255,255,255,0.55); }
+.close .card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); box-shadow:none; }
+
+/* ── FOOTER ── */
+.foot {
+  padding:46px 6vw; border-top:1px solid var(--stone-dk);
+  font-size:12px; line-height:1.75; color:var(--mid);
+}
+.foot-inner { max-width:1080px; margin:0 auto; }
+.foot strong { color:var(--body); font-weight:400; }
+
+@media (max-width:900px) {
+  .hero { padding:48px 26px 62px; }
+  .hero-inner { grid-template-columns:1fr; gap:38px; }
+  .hero-copy { order:1; }
+  .hero-visual { display:none; }
+  .hero-visual-m { display:block; margin:30px 0 6px; }
+  /* Not the full 9:16 — a tall video would push the form off the screen. */
+  .hero-visual-m .vid { aspect-ratio:4/5; max-height:52vh; object-position:center 18%; }
+  .hero h1 { font-size:40px; }
+  .hero-sub { font-size:16px; }
+  .card { padding:32px 24px 28px; }
+  .card-title { font-size:25px; }
+  .recog, .work, .who, .clarity, .close { padding:68px 26px; }
+  .recog h2, .work h2, .who h2, .close h2 { font-size:33px; }
+  .clarity h2 { font-size:29px; }
+  .recog-grid, .work-grid { grid-template-columns:1fr; gap:26px; }
+  .close-inner { grid-template-columns:1fr; gap:38px; }
+  .local { padding:48px 26px; }
+  .local-inner { gap:30px; }
+  .foot { padding:38px 26px; }
+
+  /* ── MOBILE CONTACT MENU ── */
+  .masthead {
+    position:sticky; top:0; z-index:120;
+    padding:12px 22px; gap:12px; flex-wrap:nowrap;
+    align-items:center; justify-content:space-between;
+    background:rgba(250,248,245,0.97); backdrop-filter:blur(10px);
+  }
+  .masthead-brand { flex-direction:column; align-items:flex-start; gap:3px; }
+  .masthead-name { font-size:18px; line-height:1; }
+  .masthead-sub {
+    font-size:8px; letter-spacing:0.2em; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis; max-width:62vw;
+  }
+  .mnav-toggle {
+    display:flex; align-items:center; gap:9px; flex-shrink:0;
+    background:none; border:1px solid var(--stone-dk); cursor:pointer;
+    padding:9px 13px; font-family:'Jost',sans-serif; font-size:9px;
+    letter-spacing:0.22em; text-transform:uppercase; color:var(--forest);
+    font-weight:500; transition:border-color 0.2s;
+  }
+  .mnav-toggle:active { border-color:var(--sage); }
+  .mnav-bars { display:flex; flex-direction:column; gap:3px; width:15px; }
+  .mnav-bars i { display:block; height:1.5px; background:var(--forest); transition:transform 0.22s, opacity 0.22s; }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(1) { transform:translateY(4.5px) rotate(45deg); }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(2) { opacity:0; }
+  .mnav-toggle[aria-expanded="true"] .mnav-bars i:nth-child(3) { transform:translateY(-4.5px) rotate(-45deg); }
+  .mnav-panel {
+    display:block; position:absolute; top:100%; left:0; right:0;
+    background:var(--warm-wh); border-bottom:1px solid var(--stone-dk);
+    box-shadow:0 18px 34px rgba(42,42,42,0.12); padding:8px 22px 18px;
+    opacity:0; visibility:hidden; transform:translateY(-8px);
+    transition:opacity 0.2s, transform 0.2s, visibility 0.2s;
+  }
+  .mnav-panel.is-open { opacity:1; visibility:visible; transform:translateY(0); }
+  .mnav-item {
+    display:flex; align-items:baseline; gap:10px; padding:13px 0;
+    border-bottom:1px solid var(--stone-dk); text-decoration:none;
+    font-size:15px; color:var(--ink); font-weight:300;
+  }
+  .mnav-item span {
+    font-size:9px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--sage); font-weight:500; min-width:74px;
+  }
+  .mnav-cta {
+    display:block; width:100%; margin-top:16px; border:none; cursor:pointer;
+    background:var(--forest); color:#fff; padding:15px;
+    font-family:'Jost',sans-serif; font-size:10px; letter-spacing:0.24em;
+    text-transform:uppercase; font-weight:500;
+  }
+
+  /* ── PERSISTENT CALL BUTTON ── */
+  .sticky-cta {
+    display:block; position:fixed; bottom:0; left:0; right:0; z-index:110;
+    border:none; cursor:pointer; width:100%; padding:17px 20px;
+    background:var(--forest); color:#fff; font-family:'Jost',sans-serif;
+    font-size:11px; letter-spacing:0.22em; text-transform:uppercase;
+    font-weight:500; box-shadow:0 -4px 22px rgba(0,0,0,0.14);
+    transition:transform 0.25s ease;
+  }
+  .sticky-cta.is-hidden { transform:translateY(100%); }
+  body { padding-bottom:56px; }
+}
+</style>
+
+<script src="/js/attribution.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18306001834"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-18306001834');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1040800072035550');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+
+<script>
+  /* Clarity loads after the page is ready so it does not compete with the hero (perf, Sep 2026). */
+  window.addEventListener('load', function () { setTimeout(function () {
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "yniax7hg9p");
+  }, 1500); });
+</script>
+     
+</head>
+<body>
+
+<!-- Meta Pixel noscript fallback (page view, no-JS) -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
+/></noscript>
+
+<!-- GOOGLE TAG MANAGER (noscript) — NOT ACTIVE YET. See the note in the head.
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+-->
+
+<!-- Hidden form so Netlify registers it at build time.
+     Any new field must be added here too, or Netlify will not record it. -->
+<form name="lp-parents" netlify netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="lp-parents">
+  <input name="bot-field">
+  <input type="text" name="name">
+  <input type="tel" name="phone">
+  <input type="email" name="email">
+  <select name="childage"></select>
+  <select name="besttime"></select>
+  <textarea name="message"></textarea>
+  <input type="checkbox" name="sms_consent">
+  <input type="text" name="source">
+  <!-- Attribution — written by /js/attribution.js right before the POST.
+       Declared here because Netlify only records declared fields. -->
+  <input type="hidden" name="utm_source">
+  <input type="hidden" name="utm_medium">
+  <input type="hidden" name="utm_campaign">
+  <input type="hidden" name="utm_content">
+  <input type="hidden" name="utm_term">
+  <input type="hidden" name="gclid">
+  <input type="hidden" name="fbclid">
+  <input type="hidden" name="channel">
+  <input type="hidden" name="referrer">
+  <input type="hidden" name="landing_page">
+  <input type="hidden" name="first_touch">
+  <input type="hidden" name="visit_count">
+  <input type="hidden" name="ga_client_id">
+  <input type="hidden" name="attribution">
+</form>
+
+<header class="masthead">
+  <div class="masthead-brand">
+    <span class="masthead-name">Josiah Thurlow</span>
+    <span class="masthead-sub">Mental Wellness &amp; Guidance · Boca Raton, FL</span>
+  </div>
+  <button class="mnav-toggle" id="mnavToggle" type="button"
+          aria-expanded="false" aria-controls="mnavPanel" onclick="lpToggleNav()">
+    <span class="mnav-bars"><i></i><i></i><i></i></span> Contact
+  </button>
+  <div class="mnav-panel" id="mnavPanel">
+    <a class="mnav-item" href="tel:+15617034449"><span>Call</span>(561) 703-4449</a>
+    <a class="mnav-item" href="sms:+15617034449"><span>Text</span>(561) 703-4449</a>
+    <a class="mnav-item" href="mailto:contact@josiahthurlow.com"><span>Email</span>contact@josiahthurlow.com</a>
+    <button class="mnav-cta" type="button" onclick="lpToggleNav(false);lpScrollToForm();">Request your free call &rarr;</button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">For Parents in Boca Raton, Delray Beach &amp; West Palm Beach</div>
+      <h1 class="display">You don't have to<br>carry this <em>alone.</em></h1>
+      <p class="hero-sub">Josiah works with teenagers and young adults who have stopped opening up &mdash; and with the parents trying to reach them. In person in Boca Raton, Delray Beach or West Palm Beach, online, or in your own home across Palm Beach County.</p>
+      <ul class="hero-points">
+        <li><span class="tick"></span> Sessions for your teen, and separate guidance sessions for you</li>
+        <li><span class="tick"></span> Someone they'll actually talk to &mdash; not a waiting room and a clipboard</li>
+        <li><span class="tick"></span> Every family starts with a free 20-minute call &mdash; no paperwork, no commitment</li>
+      </ul>
+
+      <!-- Mobile only: the parent sees who is going to call before being asked
+           for a phone number. Same file as the desktop photo, so no extra load. -->
+      <div class="hero-visual-m">
+        <div class="vid-wrap">
+          <video class="vid" id="heroVideo" playsinline muted loop preload="none"
+                 poster="images/josiah-parents-poster.jpg">
+            <source src="images/josiah-parents.mp4" type="video/mp4">
+          </video>
+          <button class="vid-sound" id="heroVideoSound" type="button" aria-label="Turn sound on">
+            <span class="vid-sound-ico">🔊</span> Tap for sound
+          </button>
+        </div>
+        <div class="hero-photo-cap">Josiah Thurlow · M.S. Mental Health Counseling</div>
+      </div>
+
+      <div class="card" id="start">
+        <div class="form-wrap">
+        <form class="lead-form" name="lp-parents" method="POST" data-netlify="true"
+              netlify netlify-honeypot="bot-field" action="/" autocomplete="on">
+          <input type="hidden" name="form-name" value="lp-parents">
+          <input type="hidden" name="source" value="lp-parents-hero">
+          <p style="display:none;" aria-hidden="true"><label>Skip this: <input name="bot-field" type="text" autocomplete="off" tabindex="-1"></label></p>
+
+          <div class="card-title">Start with a free call.</div>
+          <div class="card-sub">20 minutes · Josiah calls you back within 24 hours</div>
+
+          <div class="field">
+            <label for="h_name">Your Name</label>
+            <input type="text" id="h_name" name="name" autocomplete="name" required placeholder="First and last name">
+          </div>
+          <div class="field">
+            <label for="h_phone">Phone Number</label>
+            <input type="tel" id="h_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
+          </div>
+          <div class="field">
+            <label for="h_email">Email Address</label>
+            <input type="email" id="h_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
+          </div>
+          <button type="button" class="opt-toggle" data-opt-toggle aria-expanded="false">+ Add details (optional)</button>
+          <div class="opt-fields" hidden>
+          <div class="field">
+            <label for="h_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+            <select id="h_age" name="childage">
+              <option value="" selected>Select an age range</option>
+              <option value="12 or younger">12 or younger</option>
+              <option value="13-15">13 &ndash; 15</option>
+              <option value="16-17">16 &ndash; 17</option>
+              <option value="18-21">18 &ndash; 21</option>
+              <option value="22 or older">22 or older</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="h_time">Best Time To Reach You <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+            <select id="h_time" name="besttime">
+              <option value="" selected>Select a window</option>
+              <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
+              <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
+              <option value="Evening (after 5pm)">Evening (after 5pm)</option>
+              <option value="Any time">Any time works</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="h_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
+            <textarea id="h_msg" name="message" rows="3"
+                      placeholder="Share as much or as little as you&#39;d like..."></textarea>
+          </div>
+          </div>
+          <div class="consent">
+            <input type="checkbox" id="h_sms" name="sms_consent" value="yes">
+            <label for="h_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
+          </div>
+          <button type="submit" class="btn-main">Request My Free Call &rarr;</button>
+          <div class="fineprint">Your information is private. Submitting this form does not establish a professional relationship.</div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img class="hero-photo" src="images/hero-photo-mobile.jpg" alt="Josiah Thurlow" loading="lazy" decoding="async">
+      <div class="hero-photo-cap">Josiah Thurlow · M.S. Mental Health Counseling</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ RECOGNITION ════════════════════════════ -->
+<section class="recog">
+  <div class="recog-inner">
+    <div class="eyebrow">Sound Familiar</div>
+    <h2 class="display">Most parents describe the same three things.</h2>
+    <div class="recog-grid">
+      <div class="recog-item">
+        <h3>&ldquo;Fine.&rdquo;</h3>
+        <p>The answer to every question, and the end of every conversation. You know it isn't the whole story, and you know pressing harder won't get you the rest.</p>
+      </div>
+      <div class="recog-item">
+        <h3>The closed door</h3>
+        <p>Time in the room goes up. Time with the family goes down. Nothing dramatic happened &mdash; they just stopped coming out.</p>
+      </div>
+      <div class="recog-item">
+        <h3>Second-guessing</h3>
+        <p>Push and it gets worse. Back off and it feels like giving up. You're making the call alone, every day, with no one to check it against.</p>
+      </div>
+    </div>
+    <p class="recog-note">That last part is the one worth changing first. Whatever your teenager is working through, you shouldn't be the only adult thinking about it &mdash; and you shouldn't have to guess your way through it on your own.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ WHAT IT LOOKS LIKE ═══════════════════════════ -->
+<section class="work">
+  <div class="work-inner">
+    <div class="eyebrow">How It Works</div>
+    <h2 class="display">Three ways families start.</h2>
+    <div class="work-grid">
+      <div class="work-card">
+        <h3>Sessions for your teen</h3>
+        <p>One-on-one time with someone they'll open up to, trained to know what to do with what comes out. No diagnosis, no file, no label.</p>
+        <div class="meta">50 minutes · In person or online</div>
+      </div>
+      <div class="work-card">
+        <h3>Guidance for you</h3>
+        <p>Sessions built around the parent, not the teenager. What to say, what to stop saying, and how to read what you're getting back. Useful even if your child refuses to participate.</p>
+        <div class="meta">50 minutes · In person or online</div>
+      </div>
+      <div class="work-card">
+        <h3>In your home</h3>
+        <p>For families where getting everyone into an office is the obstacle. Josiah comes to you, anywhere in Palm Beach County.</p>
+        <div class="meta">50 minutes · Palm Beach County</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="local">
+  <div class="local-inner">
+    <div class="local-item">
+      <h4>Boca Raton · Delray Beach · West Palm Beach</h4>
+      <p>In-person sessions at all three, with in-home visits available across Palm Beach County.</p>
+    </div>
+    <div class="local-item">
+      <h4>Online</h4>
+      <p>For teenagers and young adults who open up more easily on a screen than across a desk.</p>
+    </div>
+    <div class="local-item">
+      <h4>Free 20-minute call first</h4>
+      <p>Always. It's how you find out whether Josiah is the right fit before anything is scheduled.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ WHO ═══════════════════════════════ -->
+<section class="who">
+  <div class="who-inner">
+    <div class="eyebrow">Who You'd Be Talking To</div>
+    <h2 class="display">Josiah Thurlow.</h2>
+    <p>Josiah holds a Master's degree in Mental Health Counseling and works with teenagers, young adults, and families in Boca Raton, Delray Beach and West Palm Beach, and online. Most of his week is spent with people who arrived saying almost nothing.</p>
+    <p>Teenagers open up differently when the person across from them is actually listening &mdash; without judgment, without an agenda, and without the paperwork that makes it feel like a diagnosis is coming.</p>
+
+    <div class="vid-standalone">
+      <video class="vid" id="whoVideo" playsinline controls preload="none"
+             poster="images/josiah-parents-poster.jpg">
+        <source src="images/josiah-parents.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="creds">
+      <span class="cred"><span class="tick"></span> M.S. Mental Health Counseling</span>
+      <span class="cred"><span class="tick"></span> Teens, Young Adults &amp; Families</span>
+      <span class="cred"><span class="tick"></span> Boca Raton, Delray Beach &amp; West Palm Beach · Online · In-Home</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════ CLOSING ══════════════════════════════ -->
+<section class="close">
+  <div class="close-inner">
+    <div>
+      <div class="eyebrow">Where To Start</div>
+      <h2 class="display">One call, and you're<br>not the only one <em>on it.</em></h2>
+      <p>Twenty minutes on the phone with Josiah. You describe what's been happening, he tells you honestly whether this is the right kind of support &mdash; and if it isn't, he'll point you toward what is.</p>
+    </div>
+    <div class="card">
+      <div class="form-wrap">
+      <form class="lead-form" name="lp-parents" method="POST" data-netlify="true"
+            netlify netlify-honeypot="bot-field" action="/" autocomplete="on">
+        <input type="hidden" name="form-name" value="lp-parents">
+        <input type="hidden" name="source" value="lp-parents-footer">
+        <p style="display:none;" aria-hidden="true"><label>Skip this: <input name="bot-field" type="text" autocomplete="off" tabindex="-1"></label></p>
+
+        <div class="card-title">Request your free call.</div>
+        <div class="card-sub">Josiah calls you back within 24 hours</div>
+
+        <div class="field">
+          <label for="f_name">Your Name</label>
+          <input type="text" id="f_name" name="name" autocomplete="name" required placeholder="First and last name">
+        </div>
+        <div class="field">
+          <label for="f_phone">Phone Number</label>
+          <input type="tel" id="f_phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="(555) 123-4567">
+        </div>
+        <div class="field">
+          <label for="f_email">Email Address</label>
+          <input type="email" id="f_email" name="email" autocomplete="email" inputmode="email" required placeholder="you@email.com">
+        </div>
+          <button type="button" class="opt-toggle" data-opt-toggle aria-expanded="false">+ Add details (optional)</button>
+          <div class="opt-fields" hidden>
+        <div class="field">
+          <label for="f_age">Your Child's Age <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+          <select id="f_age" name="childage">
+            <option value="" selected>Select an age range</option>
+            <option value="12 or younger">12 or younger</option>
+            <option value="13-15">13 &ndash; 15</option>
+            <option value="16-17">16 &ndash; 17</option>
+            <option value="18-21">18 &ndash; 21</option>
+            <option value="22 or older">22 or older</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_time">Best Time To Reach You <span style="opacity:.5;text-transform:none;letter-spacing:0;font-weight:300;">(optional)</span></label>
+          <select id="f_time" name="besttime">
+            <option value="" selected>Select a window</option>
+            <option value="Morning (9am-12pm)">Morning (9am &ndash; 12pm)</option>
+            <option value="Afternoon (12-5pm)">Afternoon (12 &ndash; 5pm)</option>
+            <option value="Evening (after 5pm)">Evening (after 5pm)</option>
+            <option value="Any time">Any time works</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f_msg">Anything Josiah Should Know <span class="opt">Optional</span></label>
+          <textarea id="f_msg" name="message" rows="3"
+                    placeholder="Share as much or as little as you&#39;d like..."></textarea>
+        </div>
+          </div>
+        <div class="consent">
+          <input type="checkbox" id="f_sms" name="sms_consent" value="yes">
+          <label for="f_sms">It's okay to text me at this number about scheduling. Message rates may apply; reply STOP to opt out.</label>
+        </div>
+        <button type="submit" class="btn-main">Request My Free Call &rarr;</button>
+      </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════ CLARITY ════════════════════════════ -->
+<section class="clarity">
+  <div class="clarity-inner">
+    <div class="eyebrow">What This Is</div>
+    <h2 class="display">Clarity about the work.</h2>
+    <p>Josiah holds a Master's degree in Mental Health Counseling, and the work draws on that training &mdash; but it is not therapy, and Josiah is not a licensed therapist. He does not assess, diagnose, or treat mental disorders. Instead, he provides guided reflection, practical skills training, and evidence-informed strategies to help clients navigate real-life challenges, develop greater self-awareness, strengthen resilience, and build healthier patterns of thinking and behavior.</p>
+    <p>For many people &mdash; especially teenagers, young adults, and men &mdash; this is exactly the kind of support that fits: structured, honest, practical, and free of the labels and paperwork that can make traditional clinical settings feel heavier than they need to be.</p>
+    <p class="crisis"><strong>If you're experiencing a mental health crisis,</strong> believe you may have a mental health disorder that requires clinical assessment or treatment, or need urgent care, please seek help from a licensed mental health provider or call or text 988 (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+  </div>
+</section>
+
+<button class="sticky-cta" id="stickyCta" type="button" onclick="lpScrollToForm()">
+  Request your free call &rarr;
+</button>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p><strong>Josiah Thurlow · Mental Wellness &amp; Guidance</strong><br>
+    Boca Raton, Delray Beach &amp; West Palm Beach · In-person, online, and in-home across Palm Beach County<br>
+    <a href="tel:+15617034449">(561) 703-4449</a> · <a href="sms:+15617034449">Send a text</a> · <a href="mailto:contact@josiahthurlow.com">contact@josiahthurlow.com</a></p>
+    <p style="margin-top:14px;">This service is not therapy and does not include assessment, diagnosis, or treatment of mental disorders. Submitting a form does not establish a professional relationship. In a crisis, call or text 988.</p>
+    <p style="margin-top:14px;">&copy; 2026 Josiah Thurlow Mental Wellness &amp; Guidance · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   Landing page — parents, direct session inquiry.
+   One Netlify form (lp-parents) used twice; the hidden `source` field says
+   whether the lead came from the hero card or the closing card.
+   ========================================================================== */
+function trackLead(formName, detail) {
+  detail = detail || {};
+  try {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead_submit',
+      form_name: formName,
+      lead_source: detail.source || '',
+      lead_topic: 'Parent seeking help for my child'
+    });
+  } catch (e) {}
+  try { if (typeof gtag === 'function') { gtag('event', 'generate_lead', { form_name: formName }); } } catch (e) {}
+  try { if (typeof gtag === 'function') { gtag('event', 'conversion', { 'send_to': 'AW-18306001834/zpweCKzEztkcEKrX_ZhE' }); } } catch (e) {}
+  try { if (typeof fbq === 'function') { fbq('track', 'Lead', { content_name: formName }); } } catch (e) {}
+}
+
+/* ── Mobile contact menu ────────────────────────────────────────────────── */
+function lpToggleNav(force) {
+  var panel = document.getElementById('mnavPanel');
+  var btn = document.getElementById('mnavToggle');
+  if (!panel || !btn) { return; }
+  var open = (typeof force === 'boolean') ? force : !panel.classList.contains('is-open');
+  panel.classList.toggle('is-open', open);
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+document.addEventListener('click', function (e) {
+  var head = document.querySelector('.masthead');
+  if (head && !head.contains(e.target)) { lpToggleNav(false); }
+});
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { lpToggleNav(false); }
+});
+
+/* ── Jump to the next form and land in the first field ──────────────────── */
+function lpScrollToForm() {
+  var forms = Array.prototype.slice.call(document.querySelectorAll('.card form.lead-form'));
+  if (!forms.length) { return; }
+  var y = window.pageYOffset || document.documentElement.scrollTop;
+  var target = null;
+  for (var i = 0; i < forms.length; i++) {
+    if (forms[i].getBoundingClientRect().top > 60) { target = forms[i]; break; }
+  }
+  if (!target) { target = forms[forms.length - 1]; }
+  var head = document.querySelector('.masthead');
+  var sticky = head && window.getComputedStyle(head).position === 'sticky';
+  var offset = (sticky ? head.offsetHeight : 0) + 16;
+  var top = target.getBoundingClientRect().top + y - offset;
+  window.scrollTo({ top: (top < 0 ? 0 : top), behavior: 'smooth' });
+  var first = target.querySelector('input[name="name"]');
+  if (first) {
+    setTimeout(function () {
+      try { first.focus({ preventScroll: true }); } catch (e) {}
+    }, 650);
+  }
+}
+
+/* ── The call button steps aside whenever a form is already on screen ───── */
+(function () {
+  var bar = document.getElementById('stickyCta');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  if (!bar || !cards.length || !('IntersectionObserver' in window)) { return; }
+  var seen = cards.map(function () { return false; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var i = cards.indexOf(entry.target);
+      if (i > -1) { seen[i] = entry.isIntersecting; }
+    });
+    var anyVisible = seen.some(function (v) { return v; });
+    bar.classList.toggle('is-hidden', anyVisible);
+  }, { threshold: 0.15 });
+  cards.forEach(function (c) { io.observe(c); });
+})();
+
+/* ── Optional fields stay folded until someone wants them ─────────────── */
+document.querySelectorAll('[data-opt-toggle]').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var box = btn.parentElement.querySelector('.opt-fields');
+    if (!box) { return; }
+    box.hidden = false;
+    btn.hidden = true;
+    var first = box.querySelector('select, textarea');
+    if (first) { first.focus(); }
+  });
+});
+
+/* ── Hero video: nothing is downloaded until it comes into view. Muted
+      autoplay is the only kind browsers allow, and the captions are burned
+      into the picture, so the message lands with the sound off. ───────────── */
+(function () {
+  var v = document.getElementById('heroVideo');
+  var btn = document.getElementById('heroVideoSound');
+  if (!v) { return; }
+
+  function load() {
+    if (v.getAttribute('preload') === 'none') {
+      v.setAttribute('preload', 'auto');
+      v.load();
+    }
+  }
+
+  /* Wait until the page has finished loading, so the video download does
+     not compete with the text, the form and the poster (perf, Sep 2026). */
+  function start() {
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { load(); v.play().catch(function(){}); }
+          else { v.pause(); }
+        });
+      }, { threshold: 0.4 });
+      io.observe(v);
+    } else {
+      load();
+    }
+  }
+  if (document.readyState === 'complete') { setTimeout(start, 800); }
+  else { window.addEventListener('load', function () { setTimeout(start, 800); }); }
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      v.muted = !v.muted;
+      if (!v.muted) {
+        v.currentTime = 0;
+        v.play().catch(function(){});
+        btn.classList.add('is-off');
+        try { if (typeof fbq === 'function') { fbq('trackCustom', 'VideoSoundOn'); } } catch(e){}
+        try { if (typeof gtag === 'function') { gtag('event', 'video_sound_on'); } } catch(e){}
+      }
+    });
+  }
+})();
+
+document.querySelectorAll('form.lead-form').forEach(function (form) {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+    /* Stamp utm_*, click IDs, channel and referrer in at the last moment. */
+    try { if (window.jtAttribution) { window.jtAttribution.applyTo(form); } } catch (e) {}
+
+    var data = new FormData(form);
+
+    /* A failed POST used to still show the thank-you and fire a conversion,
+       so the lead vanished and the ad platforms counted it anyway. */
+    var sent = false;
+    try {
+      var res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString()
+      });
+      sent = res && res.ok;
+    } catch (err) { sent = false; }
+
+    if (!sent) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Request My Free Call →'; }
+      var warn = form.querySelector('.form-error');
+      if (!warn) {
+        warn = document.createElement('div');
+        warn.className = 'form-error';
+        warn.style.cssText = 'margin-top:14px;font-family:Jost,sans-serif;font-size:13px;line-height:1.6;color:#C05A4A;';
+        warn.innerHTML = 'Something went wrong sending that. Please try again, or call Josiah at <a href="tel:+15617034449" style="color:#C05A4A;">(561) 703-4449</a>.';
+        form.appendChild(warn);
+      }
+      return;
+    }
+
+    /* Netlify holds the lead; the webhook hands it to the CRM. Fired after a
+       confirmed save so a retry cannot duplicate it, and not awaited so the
+       thank-you never waits on the CRM. */
+    try {
+      if (window.jtAttribution) {
+        window.jtAttribution.sendWebhook(
+          window.jtAttribution.payload(data.get('form-name') || '', data, {
+            source: data.get('source') || ''
+          })
+        );
+      }
+    } catch (e) {}
+
+    trackLead(data.get('form-name') || '', { source: data.get('source') || '' });
+
+    var wrap = form.closest('.form-wrap') || form.parentElement;
+    var top = wrap.getBoundingClientRect().top + window.pageYOffset - 110;
+    wrap.innerHTML =
+      '<div class="thanks">' +
+        '<div class="thanks-mark"><svg viewBox="0 0 24 24" width="26" height="26" stroke="#fff" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>' +
+        '<h3>Thank you.</h3>' +
+        '<p>Josiah will personally reach out within 24 hours, in the time window you chose. If it\'s urgent, call or text <a href="tel:+15617034449" style="color:var(--sage);">(561) 703-4449</a>.</p>' +
+      '</div>';
+    var bar = document.getElementById('stickyCta');
+    if (bar) { bar.parentNode.removeChild(bar); document.body.style.paddingBottom = '0'; }
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

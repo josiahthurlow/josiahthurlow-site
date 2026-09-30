@@ -1,0 +1,7 @@
+# Browser caching for static files (perf, Sep 2026).
+# If you replace an image, give it a new file name (e.g. -v3) so visitors get the new one.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/js/*
+  Cache-Control: public, max-age=86400

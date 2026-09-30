@@ -40,7 +40,12 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<!-- Fonts load without blocking the first paint (perf, Sep 2026). -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"></noscript>
+<!-- Hero photo for phones, requested as early as possible. -->
+<link rel="preload" as="image" href="/images/josiah-hero-mobile.webp" type="image/webp" media="(max-width: 480px)" fetchpriority="high">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1783,9 +1788,24 @@ footer {
 }
 .note-toggle:hover{ color:#4A6B55; }
 .note-field[hidden]{ display:none; }
+/* Vimeo click-to-load cover */
+.vimeo-facade{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer; background:#2A2A2A; overflow:hidden; }
+.vimeo-facade img{ width:100%; height:100%; object-fit:cover; object-position:center 38%; display:block; opacity:.72; transition:opacity .2s; }
+.vimeo-facade:hover img{ opacity:.85; }
+.vimeo-play{ position:absolute; left:20px; bottom:20px; width:64px; height:64px; border-radius:50%; background:rgba(122,158,135,.92); box-shadow:0 6px 24px rgba(0,0,0,.28); }
+.vimeo-play::after{ content:""; position:absolute; top:50%; left:54%; transform:translate(-50%,-50%); border-style:solid; border-width:12px 0 12px 19px; border-color:transparent transparent transparent #fff; }
 </style>
-<script src="/js/attribution.js"></script>
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script src="/js/attribution.js" defer></script>
+<script>
+  /* Netlify Identity (CMS login) is only needed when someone arrives from an
+     invite, password-reset or confirmation link. Loading it for every visitor
+     was slowing the page down. The /admin page still loads it on its own. */
+  if (/(invite|recovery|confirmation|email_change)_token|access_token/.test(location.hash)) {
+    var ni = document.createElement('script');
+    ni.src = 'https://identity.netlify.com/v1/netlify-identity-widget.js';
+    document.head.appendChild(ni);
+  }
+</script>
 
 <!-- ==========================================================================
      GOOGLE TAG MANAGER  —  NOT ACTIVE YET
@@ -1828,12 +1848,15 @@ fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 
-  <script type="text/javascript">
+  <script>
+  /* Clarity loads after the page is ready so it does not compete with the hero (perf, Sep 2026). */
+  window.addEventListener('load', function () { setTimeout(function () {
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "yc6flrzxjv");
+  }, 1500); });
 </script>
   
 </head>
@@ -1941,6 +1964,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <!-- Mobile: a separately framed crop of the same photo, so the head
              can never be cut regardless of screen size. Also ~127KB instead
              of 12MB, which matters a lot for mobile load time. -->
+        <source media="(max-width: 480px)" type="image/webp" srcset="/images/josiah-hero-mobile.webp">
         <source media="(max-width: 900px)" srcset="/images/josiah-hero-mobile-v2.jpg">
         <img src="/images/josiah-hero.jpg" width="1300" height="2310" fetchpriority="high" alt="Josiah Thurlow" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;">
       </picture>
@@ -2006,11 +2030,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#book" onclick="openBooking();return false;" class="video-cta">Book a Free Discovery Call →</a>
     </div>
     <div style="padding:56.25% 0 0 0;position:relative;border-radius:4px;overflow:hidden;">
-      <iframe src="https://player.vimeo.com/video/1202246128?badge=0&autopause=0&player_id=0&app_id=58479" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Meet Josiah Thurlow"></iframe>
+      <button type="button" class="vimeo-facade" id="vimeoFacade" aria-label="Play video: Meet Josiah Thurlow">
+        <img src="/images/josiah-hero-mobile.webp" alt="" loading="lazy" decoding="async">
+        <span class="vimeo-play" aria-hidden="true"></span>
+      </button>
     </div>
   </div>
 </div>
-<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  /* The Vimeo player only loads when someone taps play (perf, Sep 2026). */
+  (function () {
+    var b = document.getElementById('vimeoFacade');
+    if (!b) { return; }
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://player.vimeo.com/video/1202246128?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1';
+      f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share');
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      f.setAttribute('title', 'Meet Josiah Thurlow');
+      f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:0;';
+      b.replaceWith(f);
+      try { if (typeof gtag === 'function') { gtag('event', 'video_play', { video: 'meet_josiah' }); } } catch (e) {}
+    });
+  })();
+</script>
 
 <!-- SERVICES -->
 <div id="services">
