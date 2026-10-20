@@ -32,7 +32,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap"></noscript>
 <!-- Hero photo for phones, requested as early as possible. -->
-<link rel="preload" as="image" href="/images/josiah-hero-mobile.webp" type="image/webp" media="(max-width: 480px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" media="(max-width: 900px)" imagesrcset="/images/josiah-hero-m-640.webp 640w, /images/josiah-hero-m-960.webp 960w, /images/josiah-hero-m-1280.webp 1280w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" media="(min-width: 901px)" imagesrcset="/images/josiah-hero-d-800.webp 800w, /images/josiah-hero-d-1200.webp 1200w, /images/josiah-hero-d-1300.webp 1300w" imagesizes="50vw" fetchpriority="high">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -42,12 +43,12 @@
   --forest:   #4A6B55;
   --stone:    #F2EDE6;
   --stone-dk: #E0D9CF;
-  --charcoal: #2A2A2A;
+  --charcoal: #33403A;   /* was #33403A: warmer, lighter dark */
   --mist:     #D4E2D8;
   --warm-wh:  #FAF8F5;
-  --ink:      #1C1C1C;
-  --body:     #444444;
-  --mid:      #777777;
+  --ink:      #222222;
+  --body:     #3A3A3A;
+  --mid:      #5E5E5E;   /* was #777: body copy now passes AA on stone */
   --lt:       #AAAAAA;
 }
 
@@ -111,7 +112,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .nav-links a {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--mid);
@@ -161,7 +162,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .hero-eyebrow {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--sage);
@@ -188,11 +189,11 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .hero-sub {
-  font-size: 15px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.5);
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.82);
   font-weight: 300;
-  max-width: 420px;
+  max-width: 460px;
   margin-bottom: 52px;
   opacity: 0;
   animation: fadeUp 0.9s ease 0.7s forwards;
@@ -209,10 +210,10 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 .btn-primary {
   background: var(--sage);
   color: white;
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 15px 36px;
+  padding: 17px 38px;
   text-decoration: none;
   font-weight: 500;
   transition: background 0.25s, transform 0.2s;
@@ -225,8 +226,8 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .btn-ghost {
-  color: rgba(255,255,255,0.5);
-  font-size: 10px;
+  color: rgba(255,255,255,0.75);
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
@@ -257,7 +258,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--charcoal) 0%, rgba(42,42,42,0.3) 8%, transparent 22%);
+  background: linear-gradient(to right, var(--charcoal) 0%, rgba(51,64,58,0.3) 8%, transparent 22%);
   pointer-events: none;
   z-index: 2;
 }
@@ -360,10 +361,10 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .trust-text {
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.78);
   font-weight: 400;
 }
 
@@ -371,6 +372,57 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
   width: 1px; height: 24px;
   background: rgba(255,255,255,0.1);
 }
+
+
+/* ── CREDENTIALS STRIP (replaces the dark trust bar) ── */
+.cred-strip {
+  background: var(--warm-wh);
+  border-top: 1px solid var(--stone-dk);
+  border-bottom: 1px solid var(--stone-dk);
+}
+.cred-strip-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 60px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.cred-cell {
+  padding: 34px 28px;
+  border-left: 1px solid var(--stone-dk);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cred-cell:first-child { border-left: none; }
+.cred-big {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px; font-weight: 500; line-height: 1.05;
+  color: var(--forest);
+}
+.cred-big small { font-size: 18px; font-weight: 400; font-style: italic; }
+.cred-label {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink); font-weight: 500;
+}
+.cred-sub { font-size: 13.5px; color: var(--mid); font-weight: 300; line-height: 1.5; }
+@media (max-width: 900px) {
+  .cred-strip-inner { grid-template-columns: 1fr 1fr; padding: 0 20px; }
+  .cred-cell { padding: 22px 16px; border-left: none; border-top: 1px solid var(--stone-dk); }
+  .cred-cell:nth-child(-n+2) { border-top: none; }
+  .cred-cell:nth-child(2n) { border-left: 1px solid var(--stone-dk); }
+  .cred-big { font-size: 24px; }
+  .cred-big small { font-size: 15px; }
+  .cred-label { font-size: 10px; }
+  .cred-sub { font-size: 12.5px; }
+}
+
+/* Hero seal: the small white card over the photo (desktop) / under it (mobile). */
+.hero-card { z-index: 3; }
+.hero-seal-line { display: flex; flex-direction: column; gap: 2px; }
+.hero-seal-top { font-size: 13px; font-weight: 500; color: var(--ink); letter-spacing: 0.02em; }
+.hero-seal-sub { font-size: 11.5px; color: var(--mid); font-weight: 300; letter-spacing: 0.04em; }
+@media (max-width: 900px) {
+  .hero-card { bottom: 62px; padding: 12px 16px; gap: 10px; min-width: 0; max-width: calc(100vw - 32px); }
+  .hero-seal-top { font-size: 12px; }
+  .hero-seal-sub { font-size: 10.5px; }
+}
+@media (max-width: 900px) and (max-height: 670px) { .hero-card { display: none; } }
 
 /* ── SECTIONS SHARED ── */
 .section {
@@ -380,7 +432,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .section-label {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--sage);
@@ -398,10 +450,10 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .section-body {
-  font-size: 15px;
-  line-height: 1.85;
-  color: var(--mid);
-  max-width: 580px;
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--body);
+  max-width: 620px;
   font-weight: 300;
 }
 
@@ -491,7 +543,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 .about-quote {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
+  font-size: 27px;
   font-weight: 300;
   font-style: italic;
   color: var(--forest);
@@ -513,7 +565,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--body);
   font-weight: 300;
   letter-spacing: 0.03em;
@@ -567,7 +619,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 .service-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: 500;
   color: var(--ink);
   margin-bottom: 12px;
@@ -575,15 +627,15 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .service-desc {
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: var(--mid);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--body);
   font-weight: 300;
   margin-bottom: 28px;
 }
 
 .service-price {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--sage);
@@ -591,8 +643,8 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .service-format {
-  font-size: 11px;
-  color: var(--lt);
+  font-size: 13px;
+  color: var(--mid);
   margin-top: 4px;
   font-weight: 300;
 }
@@ -608,63 +660,63 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .services-footer p {
-  font-size: 14px;
-  color: rgba(255,255,255,0.5);
+  font-size: 15.5px;
+  color: rgba(255,255,255,0.8);
   font-weight: 300;
   max-width: 500px;
   line-height: 1.6;
 }
 
 .services-footer p strong {
-  color: rgba(255,255,255,0.85);
+  color: #ffffff;
   font-weight: 400;
 }
 
 /* ── APPROACH ── */
-#approach { background: var(--charcoal); padding: 120px 0; }
+#approach { background: var(--stone); padding: 120px 0; }
 .approach-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-#approach .section-title { color: var(--warm-wh); }
-#approach .section-body { color: rgba(255,255,255,0.4); }
-#approach .section-label { color: var(--sage-lt); }
+#approach .section-title { color: var(--ink); }
+#approach .section-body { color: var(--body); }
+#approach .section-label { color: var(--forest); }
 
 .approach-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2px;
   margin-top: 72px;
-  background: rgba(255,255,255,0.05);
+  background: var(--stone-dk);
 }
 
 .approach-card {
   padding: 48px 44px;
-  background: rgba(255,255,255,0.02);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  transition: background 0.3s;
+  background: var(--warm-wh);
+  border-top: 2px solid transparent;
+  transition: background 0.3s, border-color 0.3s;
 }
 
-.approach-card:hover { background: rgba(122,158,135,0.06); }
+.approach-card:hover { background: #fff; border-top-color: var(--sage); }
 
 .approach-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 48px;
   font-weight: 300;
-  color: rgba(122,158,135,0.3);
+  color: var(--sage-lt);
   line-height: 1;
   margin-bottom: 20px;
 }
 
 .approach-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--warm-wh);
+  font-size: 27px;
+  font-weight: 500;
+  color: var(--ink);
   margin-bottom: 14px;
 }
 
 .approach-desc {
-  font-size: 13.5px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.45);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--body);
   font-weight: 300;
 }
 
@@ -700,7 +752,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .focus-tag {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--sage);
@@ -710,17 +762,17 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 .focus-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 27px;
+  font-weight: 500;
   color: var(--ink);
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
 .focus-desc {
-  font-size: 13px;
+  font-size: 15.5px;
   line-height: 1.7;
-  color: var(--mid);
+  color: var(--body);
   font-weight: 300;
 }
 
@@ -801,7 +853,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 .step-content {}
 
 .step-title {
-  font-size: 14px;
+  font-size: 16.5px;
   font-weight: 500;
   color: var(--ink);
   margin-bottom: 6px;
@@ -809,9 +861,9 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .step-desc {
-  font-size: 13px;
+  font-size: 15.5px;
   line-height: 1.65;
-  color: var(--mid);
+  color: var(--body);
   font-weight: 300;
 }
 
@@ -822,15 +874,15 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 .form-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 300;
   color: var(--warm-wh);
   margin-bottom: 8px;
 }
 
 .form-sub {
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.7);
   letter-spacing: 0.1em;
   margin-bottom: 36px;
   font-weight: 300;
@@ -844,22 +896,22 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .form-group label {
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--sage);
+  color: var(--sage-lt);
   font-weight: 500;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.8);
-  padding: 13px 16px;
+  background: rgba(255,255,255,0.09);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #ffffff;
+  padding: 14px 16px;
   font-family: 'Jost', sans-serif;
-  font-size: 14px;
+  font-size: 16px; /* 16px stops iOS from zooming into the field */
   font-weight: 300;
   outline: none;
   transition: border-color 0.2s;
@@ -867,7 +919,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 }
 
 .form-group input::placeholder,
-.form-group textarea::placeholder { color: rgba(255,255,255,0.2); }
+.form-group textarea::placeholder { color: rgba(255,255,255,0.45); }
 
 .form-group input:focus,
 .form-group select:focus,
@@ -880,8 +932,8 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 .form-group textarea { resize: vertical; min-height: 90px; }
 
 .form-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
   line-height: 1.6;
   margin: 16px 0 28px;
   font-weight: 300;
@@ -892,10 +944,10 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
   background: var(--sage);
   color: white;
   border: none;
-  padding: 16px;
+  padding: 18px;
   font-family: 'Jost', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.28em;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
@@ -934,7 +986,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 .loc-value {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 400;
   color: var(--ink);
 }
@@ -946,7 +998,7 @@ nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
 
 /* ── FOOTER ── */
 footer {
-  background: var(--ink);
+  background: var(--charcoal);
   padding: 72px 60px 40px;
 }
 
@@ -971,8 +1023,8 @@ footer {
 }
 
 .footer-tagline {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
   letter-spacing: 0.15em;
   font-weight: 300;
 }
@@ -984,8 +1036,8 @@ footer {
 }
 
 .footer-credential {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
   letter-spacing: 0.1em;
   font-weight: 300;
   line-height: 1.6;
@@ -1013,8 +1065,8 @@ footer {
 }
 
 .footer-col ul a {
-  font-size: 13px;
-  color: rgba(255,255,255,0.35);
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
   font-weight: 300;
   transition: color 0.2s;
@@ -1031,14 +1083,14 @@ footer {
 }
 
 .footer-copy {
-  font-size: 11px;
-  color: rgba(255,255,255,0.2);
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
   font-weight: 300;
 }
 
 .footer-disclaimer {
-  font-size: 10px;
-  color: rgba(255,255,255,0.15);
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.45);
   max-width: 500px;
   line-height: 1.6;
   text-align: right;
@@ -1051,13 +1103,13 @@ footer {
   position: fixed;
   bottom: 0; left: 0; right: 0;
   z-index: 150;
-  padding: 16px 24px;
+  padding: 18px 24px;
   background: var(--forest);
   color: white;
   text-align: center;
   font-family: 'Jost', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 500;
   text-decoration: none;
@@ -1114,7 +1166,7 @@ footer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(42,42,42,0.6);
+  background: rgba(51,64,58,0.6);
   backdrop-filter: blur(4px);
   z-index: 9999;
   align-items: flex-start;
@@ -1183,8 +1235,8 @@ footer {
   color: var(--warm-wh); margin-bottom: 16px;
 }
 .lead-thanks-body {
-  font-size: 15px; line-height: 1.65;
-  color: rgba(255,255,255,0.55); font-weight: 300;
+  font-size: 16px; line-height: 1.65;
+  color: rgba(255,255,255,0.8); font-weight: 300;
 }
 .lead-thanks-link {
   display: inline-block; margin-top: 26px;
@@ -1219,7 +1271,7 @@ footer {
 .guide-form-card {
   background: var(--warm-wh);
   padding: 38px 34px;
-  box-shadow: 0 18px 50px rgba(42,42,42,0.08);
+  box-shadow: 0 18px 50px rgba(51,64,58,0.08);
 }
 .guide-form-title {
   font-family: 'Cormorant Garamond', serif;
@@ -1304,14 +1356,14 @@ footer {
   .hero-photo-placeholder img { object-position: center 30% !important; }
   /* Desktop bleeds the dark column in from the left; on mobile the dark block
      is underneath, so the fade goes down instead. */
-  .hero-right::after { background: linear-gradient(to bottom, transparent 88%, rgba(42,42,42,0.18) 95%, #2A2A2A 100%); }
+  .hero-right::after { background: linear-gradient(to bottom, transparent 88%, rgba(51,64,58,0.18) 95%, #33403A 100%); }
   .hero-right { margin-bottom: -52px; }
-  .hero-left { position: relative; z-index: 3; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 52px); }
+  .hero-left { position: relative; z-index: 3; background: linear-gradient(to bottom, rgba(51,64,58,0) 0, #33403A 52px); }
   /* extra bottom padding so the button never sits under the sticky bar */
   .hero-left { padding: 86px 28px 96px; }
-  .hero-eyebrow { margin-bottom: 18px; font-size: 9.5px; letter-spacing: 0.26em; }
+  .hero-eyebrow { margin-bottom: 18px; font-size: 10.5px; letter-spacing: 0.22em; }
   .hero-headline { font-size: 38px; margin-bottom: 18px; }
-  .hero-sub { font-size: 14.5px; margin-bottom: 26px; line-height: 1.65; }
+  .hero-sub { font-size: 16.5px; margin-bottom: 26px; line-height: 1.6; }
   /* One clear action. The outline button opened the same form as the primary
      one, so it only added a decision. */
   .hero-actions { flex-direction: column; align-items: stretch; gap: 16px; }
@@ -1333,7 +1385,7 @@ footer {
   .footer-top { flex-direction: column; }
   .footer-links { flex-direction: column; gap: 40px; }
   .trust-bar { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; padding: 24px 28px; justify-items: start; }
-  .trust-text { font-size: 10px; letter-spacing: 0.13em; }
+  .trust-text { font-size: 11.5px; letter-spacing: 0.12em; }
   .trust-item-wide { grid-column: 1 / -1; }
   .trust-sep { display: none; }
   .location-bar { flex-direction: column; gap: 32px; }
@@ -1342,7 +1394,7 @@ footer {
   .nav-links { display: none; }
   .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; right: 0; width: 260px; max-height: calc(100vh - 72px); background: rgba(250,248,245,0.98); backdrop-filter: blur(16px); z-index: 99; padding: 24px 28px; gap: 0; justify-content: flex-start; overflow-y: auto; box-shadow: -4px 0 24px rgba(0,0,0,0.12); border-radius: 0 0 0 12px; }
   .nav-links.open li { border-bottom: 1px solid var(--stone-dk); }
-  .nav-links.open a { display: block; padding: 18px 0; font-size: 13px; letter-spacing: 0.18em; color: var(--charcoal); }
+  .nav-links.open a { display: block; padding: 18px 0; font-size: 14.5px; letter-spacing: 0.18em; color: var(--charcoal); }
   .nav-links.open .nav-cta { margin-top: 8px; text-align: center; padding: 16px 24px !important; background: var(--forest); border-radius: 0; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; border: none; background: none; }
   .hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); transition: all 0.3s; border-radius: 2px; }
@@ -1356,8 +1408,8 @@ footer {
 @media (max-width: 900px) and (max-height: 780px) {
   .hero-right { height: 36vh; height: 36svh; min-height: 180px; margin-bottom: -44px; }
   .hero-headline { font-size: 32px; margin-bottom: 14px; }
-  .hero-sub { font-size: 14px; margin-bottom: 20px; }
-  .hero-left { padding: 74px 28px 88px; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 44px); }
+  .hero-sub { font-size: 16px; margin-bottom: 20px; }
+  .hero-left { padding: 74px 28px 88px; background: linear-gradient(to bottom, rgba(51,64,58,0) 0, #33403A 44px); }
   .hero-eyebrow { margin-bottom: 14px; }
 }
 
@@ -1366,9 +1418,9 @@ footer {
 @media (max-width: 900px) and (max-height: 670px) {
   .hero-actions .btn-ghost { display: none; }
   .hero-right { height: 28vh; height: 28svh; min-height: 150px; margin-bottom: -38px; }
-  .hero-left { padding: 66px 26px 84px; background: linear-gradient(to bottom, rgba(42,42,42,0) 0, #2A2A2A 38px); }
+  .hero-left { padding: 66px 26px 84px; background: linear-gradient(to bottom, rgba(51,64,58,0) 0, #33403A 38px); }
   .hero-headline { font-size: 29px; margin-bottom: 12px; }
-  .hero-sub { font-size: 13.5px; line-height: 1.55; margin-bottom: 18px; }
+  .hero-sub { font-size: 15.5px; line-height: 1.55; margin-bottom: 18px; }
   .services-inner, .approach-inner, .book-inner { padding: 0 32px; }
   footer { padding: 60px 32px 40px; }
 }
@@ -1399,7 +1451,7 @@ footer {
 }
 
 .video-content .section-body {
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.8);
   margin-bottom: 40px;
 }
 
@@ -1407,10 +1459,10 @@ footer {
   display: inline-block;
   background: var(--sage);
   color: white;
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 15px 36px;
+  padding: 17px 38px;
   text-decoration: none;
   font-weight: 500;
   transition: background 0.25s;
@@ -1525,7 +1577,7 @@ footer {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(42,42,42,0.55);
+  background: rgba(51,64,58,0.55);
   backdrop-filter: blur(4px);
   z-index: 9999;
   align-items: center;
@@ -1603,12 +1655,12 @@ footer {
 
 .btn-outline {
   background: transparent;
-  color: var(--sage);
+  color: var(--forest);
   border: 1.5px solid var(--sage);
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 14px 34px;
+  padding: 16px 36px;
   text-decoration: none;
   font-weight: 500;
   transition: background 0.25s, color 0.25s, transform 0.2s;
@@ -1622,12 +1674,12 @@ footer {
 }
 .btn-outline-light {
   background: transparent;
-  color: rgba(255,255,255,0.9);
-  border: 1.5px solid rgba(255,255,255,0.45);
-  font-size: 10px;
-  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.95);
+  border: 1.5px solid rgba(255,255,255,0.6);
+  font-size: 12px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  padding: 14px 34px;
+  padding: 16px 36px;
   text-decoration: none;
   font-weight: 500;
   transition: background 0.25s, border-color 0.25s, transform 0.2s;
@@ -1645,7 +1697,7 @@ footer {
 }
 .focus-cta-label {
   font-family: 'Jost', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--body, #555);
   margin-bottom: 18px;
   font-weight: 300;
@@ -1671,7 +1723,7 @@ footer {
   margin: 14px 0 26px;
 }
 .clarity-body {
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.7;
   color: #3a4a40;
   font-weight: 300;
@@ -1681,7 +1733,7 @@ footer {
 .clarity-body strong { font-weight: 500; color: var(--forest); }
 .clarity-crisis {
   margin-top: 30px;
-  font-size: 13px;
+  font-size: 14.5px;
   color: #5a6b60;
   font-weight: 300;
 }
@@ -1770,39 +1822,48 @@ footer {
 /* --- Single-step lead form: foldable note field -------------------------- */
 .note-toggle{
   display:inline-block; background:none; border:none; padding:0 0 22px; cursor:pointer;
-  font-family:'Jost',sans-serif; font-size:13px; font-weight:300;
-  color:#7A9E87; text-decoration:underline; text-underline-offset:3px;
+  font-family:'Jost',sans-serif; font-size:14px; font-weight:300;
+  color:#B8D0C0; text-decoration:underline; text-underline-offset:3px;
 }
 .note-toggle:hover{ color:#4A6B55; }
 .note-field[hidden]{ display:none; }
 /* Vimeo click-to-load cover */
-.vimeo-facade{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer; background:#2A2A2A; overflow:hidden; }
+.vimeo-facade{ position:absolute; inset:0; width:100%; height:100%; padding:0; border:0; cursor:pointer; background:#33403A; overflow:hidden; }
 .vimeo-facade img{ width:100%; height:100%; object-fit:cover; object-position:center 38%; display:block; opacity:.72; transition:opacity .2s; }
 .vimeo-facade:hover img{ opacity:.85; }
 .vimeo-play{ position:absolute; left:20px; bottom:20px; width:64px; height:64px; border-radius:50%; background:rgba(122,158,135,.92); box-shadow:0 6px 24px rgba(0,0,0,.28); }
 .vimeo-play::after{ content:""; position:absolute; top:50%; left:54%; transform:translate(-50%,-50%); border-style:solid; border-width:12px 0 12px 19px; border-color:transparent transparent transparent #fff; }
 
+.book-promise { font-size: 17px; line-height: 1.7; color: var(--body); font-weight: 300; margin-top: 8px; max-width: 460px; }
+.book-promise--sub { font-size: 15px; color: var(--mid); margin-top: 18px; }
+@media (max-width: 900px) { .book-info { display: none; } }
+
 /* ── LP-MEN: STATS ── */
-.stats-section { background: var(--charcoal); padding: 120px 0; }
+.stats-section { background: var(--mist); padding: 120px 0; }
 .stats-inner { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
-.stats-section .section-label { color: var(--sage-lt); }
-.stats-section .section-title { color: var(--warm-wh); }
-.stats-section .section-body { color: rgba(255,255,255,0.45); }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 72px; background: rgba(255,255,255,0.05); }
-.stat-card { padding: 44px 36px; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); }
-.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 60px; font-weight: 300; color: var(--sage-lt); line-height: 1; margin-bottom: 18px; }
-.stat-text { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.6); font-weight: 300; }
-.stat-src { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 18px; font-weight: 400; }
-.stats-foot { margin-top: 48px; font-size: 14px; line-height: 1.75; color: rgba(255,255,255,0.45); font-weight: 300; max-width: 760px; }
-.stats-foot strong { color: rgba(255,255,255,0.8); font-weight: 400; }
+.stats-section .section-label { color: var(--forest); }
+.stats-section .section-title { color: var(--ink); }
+.stats-section .section-body { color: var(--body); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 72px; background: var(--sage-lt); }
+.stat-card { padding: 44px 36px; background: var(--warm-wh); border-top: 2px solid transparent; transition: border-color .3s; }
+.stat-card:hover { border-top-color: var(--sage); }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 400; color: var(--forest); line-height: 1; margin-bottom: 18px; }
+.stat-text { font-size: 15.5px; line-height: 1.7; color: var(--body); font-weight: 300; }
+.stat-src { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); margin-top: 18px; font-weight: 400; }
+.stats-foot { margin-top: 48px; font-size: 16.5px; line-height: 1.75; color: var(--body); font-weight: 300; max-width: 760px; }
+.stats-foot strong { color: var(--forest); font-weight: 500; }
+.hero-reassure { margin-top: 18px; font-size: 13.5px; color: rgba(255,255,255,0.7); font-weight: 300; opacity: 0; animation: fadeUp 0.9s ease 1.05s forwards; }
 .pain-section { background: var(--warm-wh); padding: 120px 60px; }
 .pain-inner { max-width: 1200px; margin: 0 auto; }
 .focus-card--men .focus-tag { color: var(--forest); }
 @media (max-width: 900px) {
-  .stats-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
   .stats-inner { padding: 0 32px; }
-  .stat-num { font-size: 48px; }
+  .stat-card { padding: 30px 22px; }
+  .stat-num { font-size: 46px; }
+  .stat-text { font-size: 14.5px; }
   .pain-section { padding: 80px 32px; }
+  .hero-reassure { text-align: center; font-size: 13px; }
 }
 </style>
 <script src="/js/attribution.js" defer></script>
@@ -1905,34 +1966,63 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="hero-left">
     <div class="hero-eyebrow">For Men · Boca Raton · Palm Beach County · Free 20-Minute Call</div>
     <h1 class="hero-headline">You carry a lot.<br><em>You don't have to carry it alone.</em></h1>
-    <p class="hero-sub">Divorce. Pressure at work. Everyone counting on you. A relationship that's gone quiet. The kind of weight men are expected to handle without saying a word. The first step is just saying it out loud, to someone who gets it.</p>
+    <p class="hero-sub">Divorce. Pressure at work. Everyone counting on you. A relationship that's gone quiet. Men are expected to handle it without a word. The first step is saying it out loud to someone who gets it.</p>
     <div class="hero-actions">
-      <a href="#book" onclick="openBooking();return false;" class="btn-primary">Request a Free Call</a>
-      <a href="#why" class="btn-ghost">See why this matters</a>
+      <a href="#book" onclick="openBooking();return false;" class="btn-primary">Request a Free 20-Minute Call</a>
+      <a href="#familiar" class="btn-ghost">Sound familiar?</a>
     </div>
+    <p class="hero-reassure">No commitment. Josiah calls you back personally within 24 hours.</p>
   </div>
   <div class="hero-right">
     <div class="hero-photo-placeholder" style="padding:0;">
       <picture>
-        <source media="(max-width: 480px)" type="image/webp" srcset="/images/josiah-hero-mobile.webp">
-        <source media="(max-width: 900px)" srcset="/images/josiah-hero-mobile-v2.jpg">
-        <img src="/images/josiah-hero.jpg" width="1300" height="2310" fetchpriority="high" alt="Josiah Thurlow" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;">
+        <!-- Mobile (<=900px): the 4:5 crop, in three widths so a 3x phone gets a sharp
+             file without the 1x phone paying for it. -->
+        <source media="(max-width: 900px)" type="image/webp"
+                srcset="/images/josiah-hero-m-640.webp 640w, /images/josiah-hero-m-960.webp 960w, /images/josiah-hero-m-1280.webp 1280w"
+                sizes="100vw">
+        <!-- Desktop: the column is half the viewport, so 800/1200/1300 cover 1x, 1.5x and the full original width. -->
+        <source type="image/webp"
+                srcset="/images/josiah-hero-d-800.webp 800w, /images/josiah-hero-d-1200.webp 1200w, /images/josiah-hero-d-1300.webp 1300w"
+                sizes="50vw">
+        <!-- JPEG fallback (very old browsers only). Never the 12 MB original. -->
+        <img src="/images/josiah-hero-d-1200.jpg" width="1200" height="2132" fetchpriority="high" decoding="async" alt="Josiah Thurlow" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block;">
       </picture>
+    </div>
+    <div class="hero-card">
+      <div class="hero-card-dot"></div>
+      <div class="hero-seal-line">
+        <span class="hero-seal-top">M.S. in Mental Health Counseling</span>
+        <span class="hero-seal-sub">Palm Beach Atlantic University</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">M.S. in Mental Health Counseling</div></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">Mental Wellness for Men</div></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item trust-item-wide"><div class="trust-dot"></div><div class="trust-text">In-Person · Boca Raton, Delray Beach &amp; West Palm Beach</div></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">Online · Anywhere</div></div>
-  <div class="trust-sep"></div>
-  <div class="trust-item"><div class="trust-dot"></div><div class="trust-text">Private Pay · No Insurance Paperwork</div></div>
+<!-- CREDENTIALS STRIP -->
+<div class="cred-strip" aria-label="Credentials">
+  <div class="cred-strip-inner">
+    <div class="cred-cell">
+      <div class="cred-big">M.S.</div>
+      <div class="cred-label">Mental Health Counseling</div>
+      <div class="cred-sub">Palm Beach Atlantic University &middot; summa cum laude</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-big">Private Pay</div>
+      <div class="cred-label">No Insurance Paperwork</div>
+      <div class="cred-sub">No diagnosis on file, nothing to disclose</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-big">FAU</div>
+      <div class="cred-label">Florida Atlantic University</div>
+      <div class="cred-sub">Undergraduate, Boca Raton</div>
+    </div>
+    <div class="cred-cell">
+      <div class="cred-big">Men</div>
+      <div class="cred-label">His Focus From Day One</div>
+      <div class="cred-sub">Men, and the young men they're raising</div>
+    </div>
+  </div>
 </div>
 
 <!-- SOUND FAMILIAR -->
@@ -1940,38 +2030,38 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="pain-inner">
     <div class="section-label">Sound Familiar?</div>
     <h2 class="section-title">What men bring<br>into the room.</h2>
-    <p class="section-body">None of this means something is wrong with you. It means you're human, and you've been handling it alone for too long.</p>
+    <p class="section-body">None of this means something is wrong with you. It means you've been handling it alone for too long.</p>
 
     <div class="focus-grid">
       <div class="focus-card focus-card--men">
         <div class="focus-tag">Divorce &amp; Separation</div>
         <div class="focus-title">The life you built is being taken apart.</div>
-        <div class="focus-desc">The house, the kids, the routine, the identity of being a husband. Divorce hits men differently, and often harder, than people expect. Sorting through it alone is where men get stuck. One of Josiah's primary areas of focus.</div>
+        <div class="focus-desc">The house, the kids, the routine. Divorce hits men harder than people expect, and sorting it out alone is where most get stuck.</div>
       </div>
       <div class="focus-card">
         <div class="focus-tag">Work &amp; Pressure</div>
-        <div class="focus-title">Performing at work while quietly running on empty.</div>
-        <div class="focus-desc">Deadlines, a team, a business, a mortgage. You show up, you deliver, and no one sees the cost. Pressure that never gets processed turns into irritability, bad sleep, and shutting down at home.</div>
+        <div class="focus-title">Performing at work while running on empty.</div>
+        <div class="focus-desc">You show up and deliver, and nobody sees the cost. Unprocessed pressure turns into bad sleep, a short fuse, and shutting down at home.</div>
       </div>
       <div class="focus-card">
         <div class="focus-tag">Responsibility</div>
         <div class="focus-title">Everyone depends on you. Who do you lean on?</div>
-        <div class="focus-desc">Provider, father, son, partner. The role is to be the steady one. But being the one everyone leans on, with no one to lean on yourself, has a limit. Most men hit it in silence.</div>
+        <div class="focus-desc">Being the steady one for everybody, with no one for yourself, has a limit. Most men hit it in silence.</div>
       </div>
       <div class="focus-card">
         <div class="focus-tag">Relationships</div>
         <div class="focus-title">Something's off at home and you can't name it.</div>
-        <div class="focus-desc">Conversations that go nowhere. Distance you didn't choose. Reacting instead of responding. Saying what's actually going on is a skill, and it can be built.</div>
+        <div class="focus-desc">Distance you didn't choose. Reacting instead of responding. Saying what's actually going on is a skill, and it can be built.</div>
       </div>
       <div class="focus-card">
         <div class="focus-tag">Opening Up</div>
-        <div class="focus-title">You've never really said it out loud. To anyone.</div>
-        <div class="focus-desc">Most men were never taught how to talk about what they're carrying, only how to carry it. Sessions aren't about forcing feelings. They're straightforward, practical conversations between men.</div>
+        <div class="focus-title">You've never really said it out loud.</div>
+        <div class="focus-desc">Most men were taught how to carry it, not how to talk about it. Sessions are straightforward, practical conversations between men.</div>
       </div>
       <div class="focus-card">
         <div class="focus-tag">Loneliness</div>
         <div class="focus-title">Surrounded by people. Still alone with it.</div>
-        <div class="focus-desc">Friendships fade after 30. Work replaces them. Then one day there's no one you'd actually call. Isolation is the quiet thread behind most of what men bring in, and one of the most fixable.</div>
+        <div class="focus-desc">Friendships fade after 30 and work fills the gap. Isolation sits behind most of what men bring in, and it's one of the most fixable.</div>
       </div>
     </div>
 
@@ -1982,55 +2072,18 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   </div>
 </div>
 
-<!-- WHY THIS MATTERS (stats) -->
-<div id="why" class="stats-section">
-  <div class="stats-inner">
-    <div class="section-label">Why This Matters</div>
-    <h2 class="section-title">Most men are dealing with more<br>than anyone around them knows.</h2>
-    <p class="section-body">The numbers aren't here to scare you. They're here so you know you're not the only one, and that staying quiet is the one option that reliably doesn't work.</p>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-num">4&times;</div>
-        <div class="stat-text">Men are about four times more likely than women to die by suicide, and make up close to 80% of suicide deaths in the U.S.</div>
-        <div class="stat-src">CDC · American Institute for Boys and Men</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">15%</div>
-        <div class="stat-text">of young men say they don't have a single close friend. Five times more than in 1990.</div>
-        <div class="stat-src">Survey Center on American Life</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">10 pts</div>
-        <div class="stat-text">Men are roughly ten percentage points less likely than women to get any mental health support at all.</div>
-        <div class="stat-src">American Institute for Boys and Men</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">2&times;</div>
-        <div class="stat-text">Men in high-pressure, hands-on occupations face up to double the risk. The weight of providing is real.</div>
-        <div class="stat-src">AIBM · Suicide by occupation, 2025</div>
-      </div>
-    </div>
-
-    <p class="stats-foot">A 2026 Crisis Text Line analysis of more than 70,000 conversations with men and boys found the same pattern at every age: relationships are the top stressor when men are young, and isolation takes over as they get older. Most men said the same thing in different words, that asking for help felt like weakness. <strong>It isn't. It's the move that actually works.</strong></p>
-  </div>
-</div>
-
 <!-- ABOUT -->
 <div id="about" class="about-grid">
   <div class="about-content">
     <div class="section-label">About Josiah</div>
     <h2 class="section-title">A man who will<br>actually listen.</h2>
     <div class="sage-line"></div>
-    <p class="section-body">Male mental wellness professionals who work specifically with men, who can sit with what you're carrying without turning it into a diagnosis, are rare. That's the gap Josiah fills.</p>
     <blockquote class="about-quote">"Most men who come to me aren't broken. They're stuck. My job is to help them get unstuck, and leave with something they didn't have before."</blockquote>
-    <p class="section-body">Josiah holds a Master's in Mental Health Counseling and focuses his work on men and the young men they're raising. He doesn't assess, diagnose, or treat mental disorders. His focus is on helping you work through the real challenges in front of you, and building the self-management tools to handle whatever comes next, long after sessions end.</p>
+    <p class="section-body">Josiah holds a Master's in Mental Health Counseling and has focused on men and young men from the start. He doesn't diagnose or treat disorders. He helps you work through what's in front of you and leave with the tools to handle what comes next.</p>
     <ul class="credential-list">
-      <li><div class="cred-dot"></div> M.S. in Mental Health Counseling</li>
-      <li><div class="cred-dot"></div> Men's wellness: divorce, pressure, purpose, relationships</li>
+      <li><div class="cred-dot"></div> M.S. in Mental Health Counseling, Palm Beach Atlantic University, summa cum laude</li>
+      <li><div class="cred-dot"></div> Undergraduate studies at Florida Atlantic University (FAU)</li>
       <li><div class="cred-dot"></div> Direct and practical. No labels, no paperwork</li>
-      <li><div class="cred-dot"></div> Welcoming to all backgrounds and beliefs</li>
-      <li><div class="cred-dot"></div> In-person in Boca Raton, Delray Beach &amp; West Palm Beach, or online</li>
     </ul>
   </div>
 </div>
@@ -2040,45 +2093,71 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="services-inner">
     <div class="section-label">Sessions</div>
     <h2 class="section-title">How we work<br>together.</h2>
-    <p class="section-body">Every session has structure and purpose. In-person, online, or in your own space. Wherever works for you.</p>
+    <p class="section-body">In-person in Boca Raton, Delray Beach or West Palm Beach, online, or in your own space.</p>
 
-    <div class="services-grid" style="grid-template-columns:repeat(2,1fr);">
+    <div class="services-grid">
       <div class="service-card" style="background:var(--mist);cursor:pointer;" onclick="openBooking()">
         <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="#4A6B55" stroke-width="1.2" stroke-linecap="round"><path d="M20 8 Q28 16 28 24 A8 8 0 0 1 12 24 Q12 16 20 8Z"/></svg>
         <div class="service-name" style="color:var(--forest);">Free Discovery Call</div>
-        <div class="service-desc" style="color:var(--forest);opacity:0.7;">Where every man starts. A 20-minute phone or video conversation with Josiah to talk through what's going on and decide, together, if working with him makes sense. No commitment either way.</div>
+        <div class="service-desc" style="color:var(--forest);opacity:0.8;">Where every man starts. Twenty minutes to talk through what's going on and decide, together, if this makes sense.</div>
         <div class="service-price" style="color:var(--forest);">Complimentary</div>
-        <div class="service-format" style="color:var(--forest);opacity:0.5;">20 minutes · By phone or video</div>
+        <div class="service-format" style="color:var(--forest);opacity:0.6;">20 minutes · Phone or video</div>
       </div>
       <div class="service-card" style="cursor:pointer;" onclick="openBooking('Men\'s wellness')">
         <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="#7A9E87" stroke-width="1.2" stroke-linecap="round"><circle cx="20" cy="12" r="6"/><path d="M8 34c0-6.6 5.4-12 12-12s12 5.4 12 12"/></svg>
-        <div class="service-name">Individual Sessions for Men</div>
-        <div class="service-desc">One-on-one work on what you're actually dealing with: divorce, pressure, purpose, relationships, feeling stuck. Direct and practical. Josiah's primary focus with adult clients.</div>
+        <div class="service-name">Individual Sessions</div>
+        <div class="service-desc">One-on-one work on what you're actually dealing with. Direct, practical, and built around you.</div>
         <div class="service-price">$145</div>
         <div class="service-format">50 minutes · In-person or online</div>
       </div>
       <div class="service-card" style="cursor:pointer;" onclick="openBooking('In-home session')">
         <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="#7A9E87" stroke-width="1.2" stroke-linecap="round"><path d="M8 34 L8 22 Q8 14 20 14 Q32 14 32 22 L32 34" opacity="0.5"/><circle cx="14" cy="20" r="3"/><circle cx="26" cy="20" r="3"/><line x1="20" y1="14" x2="20" y2="8"/></svg>
         <div class="service-name">In-Home Sessions</div>
-        <div class="service-desc">For men who'd rather not walk into an office, or whose schedule makes it hard. Josiah comes to you. Same structure, different setting.</div>
+        <div class="service-desc">For men who'd rather not walk into an office. Josiah comes to you. Same work, different setting.</div>
         <div class="service-price">$225</div>
         <div class="service-format">50 minutes · Palm Beach County</div>
-      </div>
-      <div class="service-card" style="cursor:pointer;" onclick="openBooking('Group session')">
-        <svg class="service-icon" viewBox="0 0 40 40" fill="none" stroke="#7A9E87" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><circle cx="28" cy="12" r="4"/><circle cx="20" cy="28" r="4"/><line x1="16" y1="12" x2="24" y2="12"/><line x1="14" y1="15" x2="18" y2="25"/><line x1="26" y1="15" x2="22" y2="25"/></svg>
-        <div class="service-name">Men's Group Sessions</div>
-        <div class="service-desc">Small facilitated groups built around specific topics: men's mental health, divorce, grief and loss. Structured conversation with men facing the same things you are.</div>
-        <div class="service-price">$1,200 – $1,500</div>
-        <div class="service-format">90–120 min · 6–10 participants</div>
       </div>
     </div>
 
     <div class="services-footer">
-      <p><strong>All sessions are private pay.</strong> The work is driven by what you actually need, not by what a policy covers or how many sessions an insurer will approve. No diagnosis on file, no indefinite treatment. Superbills available upon request. Sliding scale considered case by case.</p>
+      <p><strong>Private pay, no insurance.</strong> No diagnosis on file, no indefinite treatment. Superbills on request; sliding scale considered case by case.</p>
       <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
         <a href="#" onclick="openBooking();return false;" class="btn-primary">Request a Free Call →</a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- WHY THIS MATTERS (stats) -->
+<div id="why" class="stats-section">
+  <div class="stats-inner">
+    <div class="section-label">Why This Matters</div>
+    <h2 class="section-title">You're not the only one.<br>Staying quiet is the one option that doesn't work.</h2>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">4&times;</div>
+        <div class="stat-text">Men are about four times more likely than women to die by suicide.</div>
+        <div class="stat-src">CDC · AIBM</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15%</div>
+        <div class="stat-text">of young men say they don't have a single close friend. Five times more than in 1990.</div>
+        <div class="stat-src">Survey Center on American Life</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10 pts</div>
+        <div class="stat-text">Men are ten points less likely than women to get any mental health support at all.</div>
+        <div class="stat-src">American Institute for Boys and Men</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2&times;</div>
+        <div class="stat-text">Men in high-pressure, hands-on jobs face up to double the risk.</div>
+        <div class="stat-src">AIBM · Suicide by occupation, 2025</div>
+      </div>
+    </div>
+
+    <p class="stats-foot">Most men say the same thing in different words: asking for help feels like weakness. <strong>It isn't. It's the move that actually works.</strong></p>
   </div>
 </div>
 
@@ -2087,28 +2166,27 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="approach-inner">
     <div class="section-label">My Approach</div>
     <h2 class="section-title">What happens<br>in a session.</h2>
-    <p class="section-body">Every man who walks in is different. The approach adjusts. The standard doesn't.</p>
 
     <div class="approach-grid">
       <div class="approach-card">
         <div class="approach-num">01</div>
         <div class="approach-title">First, the full picture.</div>
-        <div class="approach-desc">The first sessions aren't about solutions. They're about understanding what you're carrying, where it started, and what it's costing you at work and at home.</div>
+        <div class="approach-desc">What you're carrying, where it started, and what it's costing you at work and at home.</div>
       </div>
       <div class="approach-card">
         <div class="approach-num">02</div>
         <div class="approach-title">Then, clarity.</div>
-        <div class="approach-desc">Once something is understood, it can be named. And once it's named, it loses some of its weight. That moment of finally seeing it clearly is where things begin to shift.</div>
+        <div class="approach-desc">Once it's named, it loses some of its weight. That's where things start to shift.</div>
       </div>
       <div class="approach-card">
         <div class="approach-num">03</div>
         <div class="approach-title">Then, the work.</div>
-        <div class="approach-desc">Evidence-informed and built around who you are. Every session has direction, and every step forward belongs to you, not to a method or a model.</div>
+        <div class="approach-desc">Evidence-informed, built around who you are. Every session has direction.</div>
       </div>
       <div class="approach-card">
         <div class="approach-num">04</div>
         <div class="approach-title">Until you can do it yourself.</div>
-        <div class="approach-desc">The goal was never to keep you in sessions indefinitely. It's to walk away with the tools to handle the next thing on your own. That's what the work is for.</div>
+        <div class="approach-desc">The goal was never to keep you in sessions. It's to walk away with the tools to handle the next thing on your own.</div>
       </div>
     </div>
   </div>
@@ -2119,9 +2197,8 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="clarity-inner">
     <div class="section-label">What This Is</div>
     <h2 class="clarity-title">Clarity about the work.</h2>
-    <p class="clarity-body">Josiah holds a Master's degree in Mental Health Counseling, and the work draws on that training. But it is not therapy, and Josiah is not a licensed therapist. He does not assess, diagnose, or treat mental disorders. Instead, he provides guided reflection, practical skills training, and evidence-informed strategies to help men navigate real-life challenges, develop greater self-awareness, strengthen resilience, and build healthier patterns of thinking and behavior.</p>
-    <p class="clarity-body">For a lot of men, this is exactly the kind of support that fits: structured, honest, practical, and free of the labels and paperwork that can make traditional clinical settings feel heavier than they need to be.</p>
-    <p class="clarity-crisis"><strong>If you're in crisis,</strong> believe you may have a mental health disorder that requires clinical assessment or treatment, or need urgent care, please seek help from a licensed mental health provider or call or text 988 (Suicide &amp; Crisis Lifeline), available 24/7.</p>
+    <p class="clarity-body">Josiah holds a Master's in Mental Health Counseling and the work draws on that training, but it is not therapy and he is not a licensed therapist. He does not assess, diagnose, or treat mental disorders. What he offers is guided reflection, practical skills, and evidence-informed strategies for real-life challenges, without the labels and paperwork that make clinical settings feel heavier than they need to be.</p>
+    <p class="clarity-crisis"><strong>If you're in crisis</strong> or need urgent care, please contact a licensed mental health provider or call or text 988 (Suicide &amp; Crisis Lifeline), available 24/7.</p>
   </div>
 </div>
 
@@ -2137,33 +2214,12 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
   <div class="book-inner">
     <div class="section-label">Start Here</div>
     <h2 class="section-title">Start with<br>a conversation.</h2>
-    <p class="section-body">Every new client starts with a free 20-minute call. Talk through what's going on, ask whatever you need to, and decide together whether this is the right fit.</p>
+    <p class="section-body">Every new client starts with a free 20-minute call.</p>
 
     <div class="book-grid">
       <div class="book-info">
-        <div class="book-steps">
-          <div class="book-step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <div class="step-title">Request a call</div>
-              <div class="step-desc">Fill in the short form. Josiah calls you personally within 24 hours. No scheduling links, no automated anything.</div>
-            </div>
-          </div>
-          <div class="book-step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <div class="step-title">Free discovery call</div>
-              <div class="step-desc">20 minutes by phone or video. No commitment either way.</div>
-            </div>
-          </div>
-          <div class="book-step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <div class="step-title">Your first session</div>
-              <div class="step-desc">In-person in Boca Raton, Delray Beach or West Palm Beach, online from anywhere, or in-home within Palm Beach County.</div>
-            </div>
-          </div>
-        </div>
+        <p class="book-promise">Fill in the form and Josiah calls you personally within 24 hours. No scheduling links, no automated anything. Twenty minutes, no commitment either way.</p>
+        <p class="book-promise book-promise--sub">Then, if it's the right fit: in-person in Boca Raton, Delray Beach or West Palm Beach, online from anywhere, or in-home across Palm Beach County.</p>
       </div>
       <div class="book-form" id="bookForm">
         <div class="lead-form-wrap">
@@ -2220,13 +2276,13 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
     <div style="margin-top:56px;padding-top:36px;border-top:1px solid rgba(122,158,135,0.2);">
       <div style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#7A9E87;margin-bottom:18px;">Or reach out directly</div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:0;">
-        <a href="tel:+15617034449" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#2A2A2A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
+        <a href="tel:+15617034449" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#33403A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
           <span><strong style="display:block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#7A9E87;">Call</strong>(561) 703-4449</span>
         </a>
-        <a href="sms:+15617034449" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#2A2A2A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
+        <a href="sms:+15617034449" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#33403A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
           <span><strong style="display:block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#7A9E87;">Text</strong>(561) 703-4449</span>
         </a>
-        <a href="mailto:contact@josiahthurlow.com" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#2A2A2A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
+        <a href="mailto:contact@josiahthurlow.com" style="flex:1;min-width:160px;display:flex;align-items:center;gap:10px;padding:16px 20px;border:1px solid rgba(122,158,135,0.35);color:#33403A;text-decoration:none;font-family:'Jost',sans-serif;font-size:14px;font-weight:400;">
           <span><strong style="display:block;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:#7A9E87;">Email</strong>contact@josiahthurlow.com</span>
         </a>
       </div>
@@ -2257,7 +2313,7 @@ src="https://www.facebook.com/tr?id=1040800072035550&ev=PageView&noscript=1"
       <div class="footer-name">Josiah Thurlow</div>
       <div class="footer-tagline">Real Conversations. Real Change.</div>
       <div class="footer-sage-bar"></div>
-      <div class="footer-credential">M.S. in Mental Health Counseling<br>Boca Raton, Florida</div>
+      <div class="footer-credential">M.S. in Mental Health Counseling, Palm Beach Atlantic University (summa cum laude)<br>B.A., Florida Atlantic University &middot; Boca Raton, Florida</div>
     </div>
     <div class="footer-links">
       <div class="footer-col">
